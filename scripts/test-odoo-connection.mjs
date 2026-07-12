@@ -1,5 +1,5 @@
 /**
- * Live Odoo API Verification — queries custom Fuel Logs and custom Other Expenses models.
+ * Live Odoo API Verification — queries custom Fuel Logs, custom Other Expenses, and custom Maintenance.
  * Run: node --env-file=.env.local scripts/test-odoo-connection.mjs
  */
 
@@ -63,6 +63,23 @@ async function main() {
       const trip = exp.x_studio_trip ? exp.x_studio_trip[1] : "No Trip"
       const vehicle = exp.x_studio_vehicle ? exp.x_studio_vehicle[1] : "No Vehicle"
       console.log(`      - ID: ${exp.id} | Desc: "${exp.x_name}" | Trip: "${trip}" | Vehicle: "${vehicle}" | Toll: ₹${exp.x_studio_value} | Other: ₹${exp.x_studio_other} | Status: ${exp.x_studio_status}`)
+    }
+  }
+  console.log("\n" + "─".repeat(50) + "\n")
+
+  // 3. Query custom Maintenance Records
+  console.log("🔧 Querying custom Maintenance Records (x_maintenance_records)...")
+  const maintenance = await executeKw("x_maintenance_records", "search_read", [[]], {
+    fields: ["id", "x_name", "x_studio_vehicle", "x_studio_type", "x_studio_value", "x_studio_status", "x_studio_date", "x_studio_description"]
+  })
+
+  if (maintenance.__error) {
+    console.error("   ❌ Failed to query Maintenance:", maintenance.__error)
+  } else {
+    console.log(`   ✅ Found ${maintenance.length} maintenance record(s):`)
+    for (const maint of maintenance) {
+      const vehicle = maint.x_studio_vehicle ? maint.x_studio_vehicle[1] : "No Vehicle"
+      console.log(`      - ID: ${maint.id} | Ref: "${maint.x_name}" | Vehicle: "${vehicle}" | Type: ${maint.x_studio_type} | Cost: ₹${maint.x_studio_value} | Status: ${maint.x_studio_status} | Date: ${maint.x_studio_date} | Desc: "${maint.x_studio_description || ""}"`)
     }
   }
 

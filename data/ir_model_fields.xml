@@ -425,4 +425,102 @@
     <field name="on_delete" eval="False"/>
     <field name="selection">[('Pending', 'Pending'), ('Approved', 'Approved'), ('Rejected', 'Rejected')]</field>
   </record>
+  <record id="description_maintena_0bbe6e4d-1cb2-4a13-82c3-c25fba8832c4" model="ir.model.fields" context="{'studio': True}">
+    <field name="ttype">char</field>
+    <field name="copied" eval="True"/>
+    <field name="field_description">Description</field>
+    <field name="model">x_maintenance_records</field>
+    <field name="model_id" ref="maintenance_records_a95ce256-97fc-4eee-82a3-37c7be5c6d23"/>
+    <field name="name">x_name</field>
+    <field name="on_delete" eval="False"/>
+    <field name="required" eval="True"/>
+    <field name="tracking">1</field>
+    <field name="translate">standard</field>
+  </record>
+  <record id="active_maintenance_r_3d09f710-3b6f-4feb-bcb9-c7da70027f36" model="ir.model.fields" context="{'studio': True}">
+    <field name="ttype">boolean</field>
+    <field name="copied" eval="True"/>
+    <field name="field_description">Active</field>
+    <field name="model">x_maintenance_records</field>
+    <field name="model_id" ref="maintenance_records_a95ce256-97fc-4eee-82a3-37c7be5c6d23"/>
+    <field name="name">x_active</field>
+    <field name="on_delete" eval="False"/>
+    <field name="tracking">1</field>
+  </record>
+  <record id="currency_maintenance_c042667a-a254-4ee4-a131-0e231d656ad1" model="ir.model.fields" context="{'studio': True}">
+    <field name="ttype">many2one</field>
+    <field name="copied" eval="True"/>
+    <field name="field_description">Currency</field>
+    <field name="model">x_maintenance_records</field>
+    <field name="model_id" ref="maintenance_records_a95ce256-97fc-4eee-82a3-37c7be5c6d23"/>
+    <field name="name">x_studio_currency_id</field>
+    <field name="relation">res.currency</field>
+  </record>
+  <record id="value_maintenance_re_300fe7d2-c241-4e22-a95e-09099436ef74" model="ir.model.fields" context="{'studio': True}">
+    <field name="ttype">monetary</field>
+    <field name="copied" eval="True"/>
+    <field name="field_description">Value</field>
+    <field name="model">x_maintenance_records</field>
+    <field name="model_id" ref="maintenance_records_a95ce256-97fc-4eee-82a3-37c7be5c6d23"/>
+    <field name="name">x_studio_value</field>
+    <field name="on_delete" eval="False"/>
+    <field name="tracking">1</field>
+    <field name="currency_field">x_studio_currency_id</field>
+  </record>
+  <record id="sequence_maintenance_a7d5bfd7-46b4-40c6-b4fd-a129a62dc41a" model="ir.model.fields" context="{'studio': True}">
+    <field name="ttype">integer</field>
+    <field name="copied" eval="True"/>
+    <field name="field_description">Sequence</field>
+    <field name="model">x_maintenance_records</field>
+    <field name="model_id" ref="maintenance_records_a95ce256-97fc-4eee-82a3-37c7be5c6d23"/>
+    <field name="name">x_studio_sequence</field>
+    <field name="on_delete" eval="False"/>
+  </record>
+  <record id="new_many2one_mainten_7e5f34cf-3ad5-4cbc-aa57-0bfe68e197cc" model="ir.model.fields" context="{'studio': True}">
+    <field name="ttype">many2one</field>
+    <field name="copied" eval="True"/>
+    <field name="field_description">Vehicle</field>
+    <field name="model">x_maintenance_records</field>
+    <field name="model_id" ref="maintenance_records_a95ce256-97fc-4eee-82a3-37c7be5c6d23"/>
+    <field name="name">x_studio_vehicle</field>
+    <field name="relation">fleet.vehicle</field>
+  </record>
+  <record id="new_selection_mainte_9f3395d7-fa1d-4a90-947a-6c00fc71a77d" model="ir.model.fields" context="{'studio': True}">
+    <field name="ttype">selection</field>
+    <field name="copied" eval="True"/>
+    <field name="field_description">Type</field>
+    <field name="model">x_maintenance_records</field>
+    <field name="model_id" ref="maintenance_records_a95ce256-97fc-4eee-82a3-37c7be5c6d23"/>
+    <field name="name">x_studio_type</field>
+    <field name="on_delete" eval="False"/>
+    <field name="selection">[('Preventive', 'Preventive'), ('Corrective', 'Corrective'), ('Inspection', 'Inspection')]</field>
+  </record>
+  <record id="new_date_maintenance_ab156ac3-e73b-4737-b6f3-d520dadb305e" model="ir.model.fields" context="{'studio': True}">
+    <field name="ttype">date</field>
+    <field name="copied" eval="True"/>
+    <field name="field_description">Date</field>
+    <field name="model">x_maintenance_records</field>
+    <field name="model_id" ref="maintenance_records_a95ce256-97fc-4eee-82a3-37c7be5c6d23"/>
+    <field name="name">x_studio_date</field>
+    <field name="on_delete" eval="False"/>
+  </record>
+  <record id="new_selection_mainte_ae40d4c1-24e1-4dd8-968a-08b9dcb7f874" model="ir.model.fields" context="{'studio': True}">
+    <field name="ttype">selection</field>
+    <field name="copied" eval="True"/>
+    <field name="field_description">Status</field>
+    <field name="model">x_maintenance_records</field>
+    <field name="model_id" ref="maintenance_records_a95ce256-97fc-4eee-82a3-37c7be5c6d23"/>
+    <field name="name">x_studio_status</field>
+    <field name="on_delete" eval="False"/>
+    <field name="selection">[('active', 'active'), ('completed', 'completed')]</field>
+  </record>
+  <record id="new_multiline_text_m_3d24d961-bbba-4766-8f7b-912896693f0a" model="ir.model.fields" context="{'studio': True}">
+    <field name="ttype">text</field>
+    <field name="copied" eval="True"/>
+    <field name="field_description">Description</field>
+    <field name="model">x_maintenance_records</field>
+    <field name="model_id" ref="maintenance_records_a95ce256-97fc-4eee-82a3-37c7be5c6d23"/>
+    <field name="name">x_studio_description</field>
+    <field name="on_delete" eval="False"/>
+  </record>
 </odoo>

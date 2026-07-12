@@ -37,4 +37,13 @@
     <field name="name">Other Expenses</field>
     <field name="parent_id" ref="other_expenses_3476bd19-cb4a-4bcb-aa45-7b3259aa289f"/>
   </record>
+  <record id="maintenance_records_af4da2bb-baa9-47bb-b935-2ad6e5b564c5" model="ir.ui.menu" context="{'studio': True}">
+    <field name="name">Maintenance Records</field>
+    <field name="web_icon">fa fa-home,#00CEB3,#FFFFFF</field>
+  </record>
+  <record id="maintenance_records__8a1ba4f7-14b7-4dee-b0e6-52a45cd74ef8" model="ir.ui.menu" context="{'studio': True}">
+    <field name="action" ref="maintenance_records_95e1584f-65b6-4e94-ba0e-26f9a90cb5d3"/>
+    <field name="name">Maintenance Records</field>
+    <field name="parent_id" ref="maintenance_records_af4da2bb-baa9-47bb-b935-2ad6e5b564c5"/>
+  </record>
 </odoo>

@@ -60,4 +60,20 @@
     <field name="field_id" ref="new_selection_other__1d772d16-3cea-44c1-abd5-672b06cf8c49"/>
     <field name="json_value">"Pending"</field>
   </record>
+  <record id="active_maintenance_r_99426419-b7f7-407c-b12a-edbd66bd7c8e" model="ir.default" context="{'studio': True}">
+    <field name="field_id" ref="active_maintenance_r_3d09f710-3b6f-4feb-bcb9-c7da70027f36"/>
+    <field name="json_value">true</field>
+  </record>
+  <record id="currency_maintenance_605bf2c2-322f-457e-8974-211301447000" model="ir.default" context="{'studio': True}">
+    <field name="field_id" ref="currency_maintenance_c042667a-a254-4ee4-a131-0e231d656ad1"/>
+    <field name="json_value">20</field>
+  </record>
+  <record id="sequence_maintenance_32cd17bf-c16e-4b6e-943c-837bd463fd1f" model="ir.default" context="{'studio': True}">
+    <field name="field_id" ref="sequence_maintenance_a7d5bfd7-46b4-40c6-b4fd-a129a62dc41a"/>
+    <field name="json_value">10</field>
+  </record>
+  <record id="status_maintenance_r_be206db6-922e-465b-84c0-851426025d14" model="ir.default" context="{'studio': True}">
+    <field name="field_id" ref="new_selection_mainte_ae40d4c1-24e1-4dd8-968a-08b9dcb7f874"/>
+    <field name="json_value">"active"</field>
+  </record>
 </odoo>

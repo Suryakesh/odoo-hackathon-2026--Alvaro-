@@ -123,7 +123,7 @@ export type Trip = {
 }
 
 // ═══════════════════════════════════════════════════════════════════════════
-// Maintenance  (model: transit.maintenance — Shikha's custom module)
+// Maintenance  (model: x_maintenance_records)
 // ═══════════════════════════════════════════════════════════════════════════
 
 export type MaintenanceStatus = "active" | "completed"
@@ -131,13 +131,14 @@ export type MaintenanceStatus = "active" | "completed"
 /** Raw Odoo record shape */
 export type OdooRawMaintenance = {
   id: number
-  name: string
-  vehicle_id: [number, string] | false
-  maintenance_type: string | false
-  date: string | false
-  cost: number
-  description: string | false
-  status: MaintenanceStatus | false
+  x_name: string
+  x_studio_vehicle: [number, string] | false
+  x_studio_type: string | false
+  x_studio_date: string | false
+  x_studio_value: number // cost field
+  x_studio_description: string | false
+  x_studio_status: MaintenanceStatus | false
+  x_studio_currency_id: [number, string] | false
 }
 
 /** Frontend-friendly shape */

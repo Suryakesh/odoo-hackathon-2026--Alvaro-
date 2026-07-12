@@ -1,14 +1,14 @@
 /**
- * Maintenance Service — transit.maintenance (Shikha's custom module)
+ * Maintenance Service — x_maintenance_records (custom Studio app)
  *
  * Fields:
- *   name           — reference / title
- *   vehicle_id     — Many2one → fleet.vehicle
- *   maintenance_type — char
- *   date           — date
- *   cost           — float
- *   description    — text
- *   status         — selection (active / completed)
+ *   x_name                 — Reference (e.g. MAINT-001)
+ *   x_studio_vehicle       — Many2one → fleet.vehicle
+ *   x_studio_type          — selection dropdown (Preventive/Corrective/Inspection)
+ *   x_studio_date          — date
+ *   x_studio_value         — monetary (Cost)
+ *   x_studio_description   — text
+ *   x_studio_status        — selection dropdown (active/completed)
  */
 
 import { searchRead, searchCount, create, write } from "./client"
@@ -24,13 +24,13 @@ import type {
 
 const MAINTENANCE_FIELDS = [
   "id",
-  "name",
-  "vehicle_id",
-  "maintenance_type",
-  "date",
-  "cost",
-  "description",
-  "status",
+  "x_name",
+  "x_studio_vehicle",
+  "x_studio_type",
+  "x_studio_date",
+  "x_studio_value",
+  "x_studio_description",
+  "x_studio_status",
 ]
 
 // ---------------------------------------------------------------------------
@@ -40,14 +40,14 @@ const MAINTENANCE_FIELDS = [
 export function mapMaintenance(raw: OdooRawMaintenance): Maintenance {
   return {
     id: raw.id,
-    reference: raw.name || "",
-    vehicleId: raw.vehicle_id ? raw.vehicle_id[0] : null,
-    vehicleDisplay: raw.vehicle_id ? raw.vehicle_id[1] : "",
-    maintenanceType: raw.maintenance_type || "",
-    date: raw.date || "",
-    cost: raw.cost || 0,
-    description: raw.description || "",
-    status: (raw.status as MaintenanceStatus) || "active",
+    reference: raw.x_name || `MAINT-${raw.id}`,
+    vehicleId: raw.x_studio_vehicle ? raw.x_studio_vehicle[0] : null,
+    vehicleDisplay: raw.x_studio_vehicle ? raw.x_studio_vehicle[1] : "No Vehicle",
+    maintenanceType: raw.x_studio_type || "",
+    date: raw.x_studio_date || "",
+    cost: raw.x_studio_value || 0,
+    description: raw.x_studio_description || "",
+    status: (raw.x_studio_status as MaintenanceStatus) || "active",
   }
 }
 
@@ -63,16 +63,16 @@ export async function getMaintenanceRecords(filters?: {
   offset?: number
 }): Promise<Maintenance[]> {
   const domain: unknown[][] = []
-  if (filters?.status) domain.push(["status", "=", filters.status])
-  if (filters?.vehicleId) domain.push(["vehicle_id", "=", filters.vehicleId])
+  if (filters?.status) domain.push(["x_studio_status", "=", filters.status])
+  if (filters?.vehicleId) domain.push(["x_studio_vehicle", "=", filters.vehicleId])
 
   const raw = await searchRead<OdooRawMaintenance>({
-    model: "transit.maintenance",
+    model: "x_maintenance_records",
     domain,
     fields: MAINTENANCE_FIELDS,
     limit: filters?.limit,
     offset: filters?.offset,
-    order: "date desc",
+    order: "x_studio_date desc, id desc",
   })
 
   return raw.map(mapMaintenance)
@@ -81,7 +81,7 @@ export async function getMaintenanceRecords(filters?: {
 /** Fetch a single maintenance record by ID. */
 export async function getMaintenanceById(id: number): Promise<Maintenance | null> {
   const raw = await searchRead<OdooRawMaintenance>({
-    model: "transit.maintenance",
+    model: "x_maintenance_records",
     domain: [["id", "=", id]],
     fields: MAINTENANCE_FIELDS,
     limit: 1,
@@ -92,8 +92,8 @@ export async function getMaintenanceById(id: number): Promise<Maintenance | null
 /** Count maintenance records. */
 export async function countMaintenance(status?: MaintenanceStatus): Promise<number> {
   const domain: unknown[][] = []
-  if (status) domain.push(["status", "=", status])
-  return searchCount("transit.maintenance", domain)
+  if (status) domain.push(["x_studio_status", "=", status])
+  return searchCount("x_maintenance_records", domain)
 }
 
 /** Create a new maintenance record. */
@@ -105,19 +105,19 @@ export async function createMaintenance(payload: {
   cost: number
   description?: string
 }): Promise<number> {
-  const [id] = await create("transit.maintenance", {
-    name: payload.name,
-    vehicle_id: payload.vehicleId,
-    maintenance_type: payload.maintenanceType,
-    date: payload.date,
-    cost: payload.cost,
-    description: payload.description ?? "",
-    status: "active",
+  const [id] = await create("x_maintenance_records", {
+    x_name: payload.name,
+    x_studio_vehicle: payload.vehicleId,
+    x_studio_type: payload.maintenanceType,
+    x_studio_date: payload.date,
+    x_studio_value: payload.cost,
+    x_studio_description: payload.description ?? "",
+    x_studio_status: "active",
   })
   return id
 }
 
 /** Mark a maintenance record as completed. */
 export async function completeMaintenance(id: number): Promise<boolean> {
-  return write("transit.maintenance", [id], { status: "completed" })
+  return write("x_maintenance_records", [id], { x_studio_status: "completed" })
 }

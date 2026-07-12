@@ -68,4 +68,21 @@
     <field name="perm_read" eval="True"/>
     <field name="perm_write" eval="True"/>
   </record>
+  <record id="maintenance_records__2e7cbc41-c76e-46ee-ae74-83b690482a10" model="ir.model.access" context="{'studio': True}">
+    <field name="group_id" ref="base.group_system"/>
+    <field name="model_id" ref="maintenance_records_a95ce256-97fc-4eee-82a3-37c7be5c6d23"/>
+    <field name="name">Maintenance Records group_system</field>
+    <field name="perm_create" eval="True"/>
+    <field name="perm_read" eval="True"/>
+    <field name="perm_unlink" eval="True"/>
+    <field name="perm_write" eval="True"/>
+  </record>
+  <record id="maintenance_records__15946ee6-5e41-4799-80e6-845dd2c5fd68" model="ir.model.access" context="{'studio': True}">
+    <field name="group_id" ref="base.group_user"/>
+    <field name="model_id" ref="maintenance_records_a95ce256-97fc-4eee-82a3-37c7be5c6d23"/>
+    <field name="name">Maintenance Records group_user</field>
+    <field name="perm_create" eval="True"/>
+    <field name="perm_read" eval="True"/>
+    <field name="perm_write" eval="True"/>
+  </record>
 </odoo>

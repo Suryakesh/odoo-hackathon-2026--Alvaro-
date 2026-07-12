@@ -420,4 +420,115 @@
     <field name="priority">99</field>
     <field name="type">form</field>
   </record>
+  <record id="default_list_view_fo_115c26c6-ff18-4e0a-a8bc-b6f391b5d3ef" model="ir.ui.view" context="{'studio': True}">
+    <field name="arch" type="xml">
+      <list>
+        <field name="x_studio_sequence" widget="handle"/>
+        <field name="x_name"/>
+        <field name="x_studio_currency_id" invisible="1"/>
+        <field name="x_studio_value" sum="Total"/>
+      </list>
+    </field>
+    <field name="key">studio_customization.default_list_view_fo_115c26c6-ff18-4e0a-a8bc-b6f391b5d3ef</field>
+    <field name="model">x_maintenance_records</field>
+    <field name="name">Default list view for x_maintenance_records</field>
+    <field name="type">list</field>
+  </record>
+  <record id="default_form_view_fo_3d440654-ad1f-477e-9b27-b5eab8eb157f" model="ir.ui.view" context="{'studio': True}">
+    <field name="arch" type="xml">
+      <form>
+        <header/>
+        <sheet string="Maintenance Records">
+          <widget name="web_ribbon" text="Archived" bg_color="text-bg-danger" invisible="x_active"/>
+          <field name="x_active" invisible="1"/>
+          <div class="oe_title">
+            <h1>
+              <field name="x_name" required="1" placeholder="Name..."/>
+            </h1>
+          </div>
+          <group name="studio_group_5dc484">
+            <group name="studio_group_5dc484_left">
+              <field name="x_studio_currency_id" invisible="1"/>
+              <field name="x_studio_value"/>
+            </group>
+            <group name="studio_group_5dc484_right"/>
+          </group>
+        </sheet>
+        <chatter/>
+      </form>
+    </field>
+    <field name="key">studio_customization.default_form_view_fo_3d440654-ad1f-477e-9b27-b5eab8eb157f</field>
+    <field name="model">x_maintenance_records</field>
+    <field name="name">Default form view for x_maintenance_records</field>
+    <field name="type">form</field>
+  </record>
+  <record id="default_search_view__ece37ffe-dc7e-4dfe-8bed-222810305af2" model="ir.ui.view" context="{'studio': True}">
+    <field name="arch" type="xml">
+      <search>
+        <field name="x_name"/>
+        <filter invisible="1" string="My Activities" name="filter_activities_my" domain="[['activity_user_id', '=', uid]]"/>
+        <separator/>
+        <filter invisible="1" string="Late Activities" name="activities_overdue" domain="[('my_activity_date_deadline', '&lt;', 'today')]"/>
+        <filter invisible="1" string="Today Activities" name="activities_today" domain="[('my_activity_date_deadline', '=', 'today')]"/>
+        <filter invisible="1" string="Future Activities" name="activities_upcoming_all" domain="[('my_activity_date_deadline', '&gt;', 'today')]"/>
+        <separator/>
+        <separator/>
+        <filter string="Archived" name="archived_x_maintenance_records" domain="[['x_active', '=', False]]"/>
+        <separator/>
+      </search>
+    </field>
+    <field name="key">studio_customization.default_search_view__ece37ffe-dc7e-4dfe-8bed-222810305af2</field>
+    <field name="model">x_maintenance_records</field>
+    <field name="name">Default search view for x_maintenance_records</field>
+    <field name="type">search</field>
+  </record>
+  <record id="default_pivot_view_f_8aa621ce-ebdb-403c-90ac-b10c83486b7f" model="ir.ui.view" context="{'studio': True}">
+    <field name="arch" type="xml">
+      <pivot sample="1">
+        <field name="x_studio_value" type="measure"/>
+      </pivot>
+    </field>
+    <field name="key">studio_customization.default_pivot_view_f_8aa621ce-ebdb-403c-90ac-b10c83486b7f</field>
+    <field name="model">x_maintenance_records</field>
+    <field name="name">Default pivot view for x_maintenance_records</field>
+    <field name="type">pivot</field>
+  </record>
+  <record id="default_graph_view_f_bf24906e-bea9-425f-97b2-549fada0a351" model="ir.ui.view" context="{'studio': True}">
+    <field name="arch" type="xml">
+      <graph sample="1">
+        <field name="x_studio_value" type="measure"/>
+        <field name="create_date" type="row"/>
+      </graph>
+    </field>
+    <field name="key">studio_customization.default_graph_view_f_bf24906e-bea9-425f-97b2-549fada0a351</field>
+    <field name="model">x_maintenance_records</field>
+    <field name="name">Default graph view for x_maintenance_records</field>
+    <field name="type">graph</field>
+  </record>
+  <record id="odoo_studio_default__9de97b46-28cb-43ff-b37e-cb56216f8398" model="ir.ui.view" context="{'studio': True}">
+    <field name="arch" type="xml">
+      <data>
+        <xpath expr="/form//field[@name='x_name']" position="attributes">
+          <attribute name="string">Reference</attribute>
+        </xpath>
+        <xpath expr="/form//field[@name='x_studio_value']" position="after">
+          <field name="x_studio_vehicle"/>
+          <field name="x_studio_type"/>
+          <field name="x_studio_status"/>
+          <field name="x_studio_date"/>
+          <field name="x_studio_description"/>
+        </xpath>
+        <xpath expr="/form//field[@name='x_studio_value']" position="attributes">
+          <attribute name="string">Cost</attribute>
+        </xpath>
+      </data>
+    </field>
+    <field name="inherit_id" ref="default_form_view_fo_3d440654-ad1f-477e-9b27-b5eab8eb157f"/>
+    <field name="key">studio_customization.odoo_studio_default__9de97b46-28cb-43ff-b37e-cb56216f8398</field>
+    <field name="mode">extension</field>
+    <field name="model">x_maintenance_records</field>
+    <field name="name">Odoo Studio: Default form view for x_maintenance_records customization</field>
+    <field name="priority">99</field>
+    <field name="type">form</field>
+  </record>
 </odoo>
