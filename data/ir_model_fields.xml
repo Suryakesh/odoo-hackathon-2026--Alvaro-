@@ -1,0 +1,22 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<odoo>
+  <record id="new_integer_vehicle_895e90e2-b133-4364-a965-e19f5b7ef958" model="ir.model.fields" context="{'studio': True}">
+    <field name="ttype">integer</field>
+    <field name="copied" eval="True"/>
+    <field name="field_description">Max Load Capacity</field>
+    <field name="model">fleet.vehicle</field>
+    <field name="model_id" ref="fleet.model_fleet_vehicle"/>
+    <field name="name">x_studio_max_load_capacity</field>
+    <field name="on_delete" eval="False"/>
+  </record>
+  <record id="new_selection_vehicl_42d04a41-6e96-4d4a-9bd7-49aaa93e4923" model="ir.model.fields" context="{'studio': True}">
+    <field name="ttype">selection</field>
+    <field name="copied" eval="True"/>
+    <field name="field_description">Trip Status</field>
+    <field name="model">fleet.vehicle</field>
+    <field name="model_id" ref="fleet.model_fleet_vehicle"/>
+    <field name="name">x_studio_trip_status</field>
+    <field name="on_delete" eval="False"/>
+    <field name="selection">[('Available', 'Available'), ('On Trip', 'On Trip'), ('In Shop', 'In Shop'), ('Retired', 'Retired')]</field>
+  </record>
+</odoo>

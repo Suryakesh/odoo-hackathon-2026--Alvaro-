@@ -1,0 +1,20 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<odoo>
+  <record id="odoo_studio_fleet_ve_e2085aed-ac79-460b-b51d-f565f8f8d21a" model="ir.ui.view" context="{'studio': True}">
+    <field name="arch" type="xml">
+      <data>
+        <xpath expr="/form//field[@name='manager_id']" position="after">
+          <field name="x_studio_max_load_capacity"/>
+          <field name="x_studio_trip_status"/>
+        </xpath>
+      </data>
+    </field>
+    <field name="inherit_id" ref="fleet.fleet_vehicle_view_form"/>
+    <field name="key">studio_customization.odoo_studio_fleet_ve_e2085aed-ac79-460b-b51d-f565f8f8d21a</field>
+    <field name="mode">extension</field>
+    <field name="model">fleet.vehicle</field>
+    <field name="name">Odoo Studio: fleet.vehicle.form customization</field>
+    <field name="priority">160</field>
+    <field name="type">form</field>
+  </record>
+</odoo>
