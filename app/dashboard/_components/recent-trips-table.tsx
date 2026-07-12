@@ -9,40 +9,23 @@ import {
   TableRow,
 } from "@/components/ui/table"
 
+import type { Trip } from "@/lib/odoo"
 import { STATUS_COLORS, TRIP_STATUS_COLOR } from "@/lib/status-colors"
 
-const TRIPS = [
-  {
-    id: "TRP-1042",
-    vehicle: "Van 12 · KA-05-AB-1234",
-    driver: "Rohan Mehta",
-    status: "Dispatched",
-    eta: "2:45 PM",
-  },
-  {
-    id: "TRP-1041",
-    vehicle: "Truck 07 · KA-01-XY-8890",
-    driver: "Aisha Khan",
-    status: "Completed",
-    eta: "12:10 PM",
-  },
-  {
-    id: "TRP-1040",
-    vehicle: "Mini 03 · KA-09-CD-4521",
-    driver: "Vikram Singh",
-    status: "Draft",
-    eta: "—",
-  },
-  {
-    id: "TRP-1039",
-    vehicle: "Van 05 · KA-02-EF-7788",
-    driver: "Neha Sharma",
-    status: "Cancelled",
-    eta: "—",
-  },
-] as const
+type RecentTripsTableProps = {
+  trips: Trip[]
+}
 
-export function RecentTripsTable() {
+function formatTripTime(value: string): string {
+  if (!value) return "—"
+
+  return new Date(value.replace(" ", "T")).toLocaleTimeString("en-IN", {
+    hour: "numeric",
+    minute: "2-digit",
+  })
+}
+
+export function RecentTripsTable({ trips }: RecentTripsTableProps) {
   return (
     <Card className="border border-white/10 bg-white/[0.03] ring-0">
       <CardHeader>
@@ -62,33 +45,44 @@ export function RecentTripsTable() {
             </TableRow>
           </TableHeader>
           <TableBody>
-            {TRIPS.map((trip) => (
-              <TableRow
-                key={trip.id}
-                className="border-white/10 hover:bg-white/[0.03]"
-              >
-                <TableCell className="font-medium text-neutral-200">
-                  {trip.id}
-                </TableCell>
-                <TableCell className="text-neutral-300">
-                  {trip.vehicle}
-                </TableCell>
-                <TableCell className="text-neutral-300">
-                  {trip.driver}
-                </TableCell>
-                <TableCell>
-                  <Badge
-                    variant="outline"
-                    className={`border-transparent ${STATUS_COLORS[TRIP_STATUS_COLOR[trip.status]].badge}`}
-                  >
-                    {trip.status}
-                  </Badge>
-                </TableCell>
-                <TableCell className="text-right text-neutral-300">
-                  {trip.eta}
+            {trips.length ? (
+              trips.map((trip) => (
+                <TableRow
+                  key={trip.id}
+                  className="border-white/10 hover:bg-white/[0.03]"
+                >
+                  <TableCell className="font-medium text-neutral-200">
+                    TRIP-{trip.id}
+                  </TableCell>
+                  <TableCell className="text-neutral-300">
+                    {trip.vehicleDisplay || "Unassigned"}
+                  </TableCell>
+                  <TableCell className="text-neutral-300">
+                    {trip.driverName || "Unassigned"}
+                  </TableCell>
+                  <TableCell>
+                    <Badge
+                      variant="outline"
+                      className={`border-transparent ${STATUS_COLORS[TRIP_STATUS_COLOR[trip.status]].badge}`}
+                    >
+                      {trip.status}
+                    </Badge>
+                  </TableCell>
+                  <TableCell className="text-right text-neutral-300">
+                    {formatTripTime(trip.updatedAt || trip.createdAt)}
+                  </TableCell>
+                </TableRow>
+              ))
+            ) : (
+              <TableRow className="border-white/10 hover:bg-transparent">
+                <TableCell
+                  colSpan={5}
+                  className="py-10 text-center text-sm text-neutral-500"
+                >
+                  No trips found
                 </TableCell>
               </TableRow>
-            ))}
+            )}
           </TableBody>
         </Table>
       </CardContent>

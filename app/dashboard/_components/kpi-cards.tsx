@@ -1,19 +1,18 @@
 import { Card, CardContent } from "@/components/ui/card"
 
-const KPIS = [
-  { label: "Active Vehicles", value: "142" },
-  { label: "Available Vehicles", value: "58" },
-  { label: "Vehicles in Maintenance", value: "12" },
-  { label: "Active Trips", value: "37" },
-  { label: "Pending Trips", value: "9" },
-  { label: "Drivers On Duty", value: "96" },
-  { label: "Fleet Utilization", value: "78%" },
-] as const
+export type KpiCardItem = {
+  label: string
+  value: string
+}
 
-export function KpiCards() {
+type KpiCardsProps = {
+  kpis: KpiCardItem[]
+}
+
+export function KpiCards({ kpis }: KpiCardsProps) {
   return (
     <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-7">
-      {KPIS.map((kpi) => (
+      {kpis.map((kpi) => (
         <Card
           key={kpi.label}
           className="border border-white/10 bg-white/[0.03] ring-0"
