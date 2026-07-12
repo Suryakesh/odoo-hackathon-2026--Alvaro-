@@ -43,3 +43,14 @@ npm run dev
 ```
 
 Open [http://localhost:3000](http://localhost:3000) to view it locally.
+
+## Demo Login Credentials
+
+Use any of the following to sign in and explore role-based access:
+
+| Role | Email | Password |
+|---|---|---|
+| Fleet Manager | manager@transitops.com | demo123 |
+| Dispatcher | dispatcher@transitops.com | demo123 |
+| Safety Officer | safety@transitops.com | demo123 |
+| Financial Analyst | finance@transitops.com | demo123 |
