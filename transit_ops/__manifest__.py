@@ -1,20 +1,13 @@
-{
-    "name": "Transit Operations",
-    "version": "1.0",
-    "depends": [
-        "base"
-    ],
-    "installable": True,
-    "application": True
-}
+
 
 
 {
     "name": "Transit Operations",
     "version": "1.0",
 
-    "depends": [
-        "base"
+   "depends": [
+    "base",
+    "fleet"
     ],
 
     "data": [

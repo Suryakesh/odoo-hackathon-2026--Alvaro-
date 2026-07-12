@@ -10,8 +10,9 @@ class TransitMaintenance(models.Model):
         required=True
     )
 
-    vehicle_name = fields.Char(
-        string="Vehicle Name",
+    vehicle_id = fields.Many2one(
+        "fleet.vehicle",
+        string="Vehicle",
         required=True
     )
 

@@ -1,2 +1,3 @@
-id,name,model_id:id,group_id,perm_read,perm_write,perm_create,perm_unlink
-access_transit_maintenance,access.transit.maintenance,model_transit_maintenance,,1,1,1,1
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_transit_maintenance_user,transit.maintenance.user,model_transit_maintenance,base.group_user,1,1,1,0
+access_transit_maintenance_manager,transit.maintenance.manager,model_transit_maintenance,fleet.group_fleet_manager,1,1,1,1
