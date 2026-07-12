@@ -35,3 +35,9 @@ export const TRIP_STAGE_COLOR: Record<string, StatusColor> = {
   Completed: "grey",
   Cancelled: "grey",
 }
+
+export const EXPENSE_STATUS_COLOR: Record<string, StatusColor> = {
+  Approved: "green",
+  Pending: "amber",
+  Rejected: "red",
+}
