@@ -17,4 +17,171 @@
     <field name="priority">160</field>
     <field name="type">form</field>
   </record>
+  <record id="default_list_view_fo_eda2553c-3c60-4cf2-82bb-4c38c4944cad" model="ir.ui.view" context="{'studio': True}">
+    <field name="arch" type="xml">
+      <list>
+        <field name="x_studio_sequence" widget="handle"/>
+        <field name="x_name"/>
+        <field name="x_color" widget="color_picker"/>
+      </list>
+    </field>
+    <field name="key">studio_customization.default_list_view_fo_eda2553c-3c60-4cf2-82bb-4c38c4944cad</field>
+    <field name="model">x_trip</field>
+    <field name="name">Default list view for x_trip</field>
+    <field name="type">list</field>
+  </record>
+  <record id="default_form_view_fo_9433215e-bb5b-4bc9-b8fc-3fde24084cf7" model="ir.ui.view" context="{'studio': True}">
+    <field name="arch" type="xml">
+      <form>
+        <header>
+          <field name="x_studio_stage_id" widget="statusbar" options="{'clickable': '1'}"/>
+        </header>
+        <sheet string="Trip">
+          <field name="x_studio_kanban_state" widget="state_selection"/>
+          <widget name="web_ribbon" text="Archived" bg_color="text-bg-danger" invisible="x_active"/>
+          <field name="x_active" invisible="1"/>
+          <div class="oe_title">
+            <h1>
+              <field name="x_name" required="1" placeholder="Name..."/>
+            </h1>
+          </div>
+          <group name="studio_group_e2e234">
+            <group name="studio_group_e2e234_left"/>
+            <group name="studio_group_e2e234_right"/>
+          </group>
+        </sheet>
+        <chatter/>
+      </form>
+    </field>
+    <field name="key">studio_customization.default_form_view_fo_9433215e-bb5b-4bc9-b8fc-3fde24084cf7</field>
+    <field name="model">x_trip</field>
+    <field name="name">Default form view for x_trip</field>
+    <field name="type">form</field>
+  </record>
+  <record id="default_search_view__828729b1-365a-47b1-80ae-64e6fea363fd" model="ir.ui.view" context="{'studio': True}">
+    <field name="arch" type="xml">
+      <search>
+        <field name="x_name"/>
+        <filter invisible="1" string="My Activities" name="filter_activities_my" domain="[['activity_user_id', '=', uid]]"/>
+        <separator/>
+        <filter invisible="1" string="Late Activities" name="activities_overdue" domain="[('my_activity_date_deadline', '&lt;', 'today')]"/>
+        <filter invisible="1" string="Today Activities" name="activities_today" domain="[('my_activity_date_deadline', '=', 'today')]"/>
+        <filter invisible="1" string="Future Activities" name="activities_upcoming_all" domain="[('my_activity_date_deadline', '&gt;', 'today')]"/>
+        <separator/>
+        <separator/>
+        <filter string="Archived" name="archived_x_trip" domain="[['x_active', '=', False]]"/>
+        <separator/>
+        <filter name="x_studio_stage_id" string="Stage" context="{'group_by': 'x_studio_stage_id'}" domain="[]"/>
+      </search>
+    </field>
+    <field name="key">studio_customization.default_search_view__828729b1-365a-47b1-80ae-64e6fea363fd</field>
+    <field name="model">x_trip</field>
+    <field name="name">Default search view for x_trip</field>
+    <field name="type">search</field>
+  </record>
+  <record id="default_kanban_view__c18d5cbe-547f-4db2-aa15-f2928e7e4ca9" model="ir.ui.view" context="{'studio': True}">
+    <field name="arch" type="xml">
+      <kanban default_group_by="x_studio_stage_id" highlight_color="x_color">
+        <field name="x_color"/>
+        <progressbar field="x_studio_kanban_state" colors="{&quot;normal&quot;: &quot;200&quot;, &quot;done&quot;: &quot;success&quot;, &quot;blocked&quot;: &quot;danger&quot;}"/>
+        <templates>
+          <t t-name="menu">
+            <a t-if="widget.editable" role="menuitem" type="open" class="dropdown-item">Edit</a>
+            <a t-if="widget.deletable" role="menuitem" type="delete" class="dropdown-item">Delete</a>
+            <field widget="kanban_color_picker" name="x_color"/>
+          </t>
+          <t t-name="card" class="flex-row">
+            <main>
+              <div name="studio_auto_kanban_header" class="d-flex">
+                <field name="x_studio_priority" widget="boolean_favorite" nolabel="1"/>
+                <field name="display_name" class="h5"/>
+                <field name="x_studio_sequence" widget="handle" invisible="1"/>
+              </div>
+              <div name="studio_auto_kanban_body"/>
+              <footer>
+                <div class="ms-auto d-flex align-items-center">
+                  <field name="x_studio_kanban_state" widget="state_selection"/>
+                </div>
+              </footer>
+            </main>
+          </t>
+        </templates>
+      </kanban>
+    </field>
+    <field name="key">studio_customization.default_kanban_view__c18d5cbe-547f-4db2-aa15-f2928e7e4ca9</field>
+    <field name="model">x_trip</field>
+    <field name="name">Default kanban view for x_trip</field>
+    <field name="type">kanban</field>
+  </record>
+  <record id="default_list_view_fo_3e979294-67df-40fe-ad26-11d363d00463" model="ir.ui.view" context="{'studio': True}">
+    <field name="arch" type="xml">
+      <list editable="bottom">
+        <field name="x_studio_sequence" widget="handle"/>
+        <field name="x_name"/>
+      </list>
+    </field>
+    <field name="key">studio_customization.default_list_view_fo_3e979294-67df-40fe-ad26-11d363d00463</field>
+    <field name="model">x_trip_stage</field>
+    <field name="name">Default list view for x_trip_stage</field>
+    <field name="type">list</field>
+  </record>
+  <record id="default_form_view_fo_fc06b0db-bfbc-423c-a7bb-0fa16a76f623" model="ir.ui.view" context="{'studio': True}">
+    <field name="arch" type="xml">
+      <form>
+        <header/>
+        <sheet string="Trip Stages">
+          <div class="oe_title">
+            <h1>
+              <field name="x_name" required="1" placeholder="Name..."/>
+            </h1>
+          </div>
+          <group name="studio_group_31804e">
+            <group name="studio_group_31804e_left"/>
+            <group name="studio_group_31804e_right"/>
+          </group>
+        </sheet>
+      </form>
+    </field>
+    <field name="key">studio_customization.default_form_view_fo_fc06b0db-bfbc-423c-a7bb-0fa16a76f623</field>
+    <field name="model">x_trip_stage</field>
+    <field name="name">Default form view for x_trip_stage</field>
+    <field name="type">form</field>
+  </record>
+  <record id="default_search_view__9bd57fb3-40eb-4dfe-89cb-9d48281a8edc" model="ir.ui.view" context="{'studio': True}">
+    <field name="arch" type="xml">
+      <search>
+        <field name="x_name"/>
+      </search>
+    </field>
+    <field name="key">studio_customization.default_search_view__9bd57fb3-40eb-4dfe-89cb-9d48281a8edc</field>
+    <field name="model">x_trip_stage</field>
+    <field name="name">Default search view for x_trip_stage</field>
+    <field name="type">search</field>
+  </record>
+  <record id="odoo_studio_default__6e0fc046-6380-4033-a46f-6ae689134841" model="ir.ui.view" context="{'studio': True}">
+    <field name="arch" type="xml">
+      <data>
+        <xpath expr="/form//field[@name='x_studio_stage_id']" position="attributes">
+          <attribute name="string">Draft</attribute>
+        </xpath>
+        <xpath expr="/form//group[@name='studio_group_e2e234_left']" position="inside">
+          <field name="x_studio_source"/>
+          <field name="x_studio_destination"/>
+          <field name="x_studio_vehicle"/>
+          <field name="x_studio_driver"/>
+          <field name="x_studio_cargo_weight"/>
+          <field name="x_studio_planned_distance"/>
+          <field name="x_studio_final_odometer_1"/>
+          <field name="x_studio_fuel_consumed"/>
+        </xpath>
+      </data>
+    </field>
+    <field name="inherit_id" ref="default_form_view_fo_9433215e-bb5b-4bc9-b8fc-3fde24084cf7"/>
+    <field name="key">studio_customization.odoo_studio_default__6e0fc046-6380-4033-a46f-6ae689134841</field>
+    <field name="mode">extension</field>
+    <field name="model">x_trip</field>
+    <field name="name">Odoo Studio: Default form view for x_trip customization</field>
+    <field name="priority">99</field>
+    <field name="type">form</field>
+  </record>
 </odoo>

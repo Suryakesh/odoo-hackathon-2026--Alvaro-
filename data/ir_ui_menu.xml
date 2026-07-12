@@ -1,0 +1,22 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<odoo>
+  <record id="trip_98619a69-4311-412a-a306-43cd9fb84271" model="ir.ui.menu" context="{'studio': True}">
+    <field name="name">Trip</field>
+    <field name="web_icon">fa fa-home,#00CEB3,#FFFFFF</field>
+  </record>
+  <record id="trip_trip_2a212cd6-3bee-43ef-937b-f6d3c12b6f25" model="ir.ui.menu" context="{'studio': True}">
+    <field name="action" ref="trip_51079843-3032-4300-be41-57109eb7feed"/>
+    <field name="name">Trip</field>
+    <field name="parent_id" ref="trip_98619a69-4311-412a-a306-43cd9fb84271"/>
+  </record>
+  <record id="trip_configuration_4854a097-91c1-4641-8cc3-ab02f8ecc8c6" model="ir.ui.menu" context="{'studio': True}">
+    <field name="name">Configuration</field>
+    <field name="parent_id" ref="trip_98619a69-4311-412a-a306-43cd9fb84271"/>
+    <field name="sequence">100</field>
+  </record>
+  <record id="trip_configuration_t_9ec7a760-0432-467b-ae86-07cb8a16971c" model="ir.ui.menu" context="{'studio': True}">
+    <field name="action" ref="trip_stages_8aa9c913-d99a-4e21-9a28-51ecc555ffe2"/>
+    <field name="name">Trip Stages</field>
+    <field name="parent_id" ref="trip_configuration_4854a097-91c1-4641-8cc3-ab02f8ecc8c6"/>
+  </record>
+</odoo>

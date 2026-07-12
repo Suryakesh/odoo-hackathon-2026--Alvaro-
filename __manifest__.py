@@ -6,8 +6,12 @@
                 'customizations of existing apps.',
  'author': 'Alvaro33',
  'depends': ['ai', 'fleet', 'web_grid', 'web_hierarchy', 'web_studio'],
- 'data': ['data/ir_model_fields.xml',
+ 'data': ['data/ir_model.xml',
+          'data/ir_model_fields.xml',
           'data/ir_ui_view.xml',
+          'data/ir_actions_act_window.xml',
+          'data/ir_ui_menu.xml',
+          'data/ir_model_access.xml',
           'data/ir_default.xml'],
  'demo': [],
  'license': 'OPL-1'}
