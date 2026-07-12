@@ -6,10 +6,10 @@ Smart Transport Operations Platform — built for Odoo Hackathon 2026.
 TransitOps digitizes vehicle, driver, dispatch, maintenance, and expense management for logistics fleets, replacing manual spreadsheets with a centralized platform that enforces business rules and provides real-time operational visibility.
 
 ## Team
-- Surya Kesharwani — Team Lead, Backend (Odoo integration, API layer)
-- Jay1719-git — Backend support, Integration/QA
-- Chaitanya Pal — Frontend, UI/UX
-- shiiikha08 — Demo, Presentation
+- Surya Kesharwani — Team Lead, Backend (Odoo integration)
+- Jay1719-git — UI/UX
+- Chaitanya Pal — Frontend
+- shiiikha08 — API layer
 
 ## Features
 - Role-based authentication (Fleet Manager, Dispatcher, Safety Officer, Financial Analyst)
