@@ -336,4 +336,93 @@
     <field name="name">x_studio_date</field>
     <field name="on_delete" eval="False"/>
   </record>
+  <record id="description_other_ex_e4d5979d-2083-425f-9c31-fe1757bdf021" model="ir.model.fields" context="{'studio': True}">
+    <field name="ttype">char</field>
+    <field name="copied" eval="True"/>
+    <field name="field_description">Description</field>
+    <field name="model">x_other_expenses</field>
+    <field name="model_id" ref="other_expenses_b067dbfe-a73c-4ca7-b3f1-57cbe9f4dd53"/>
+    <field name="name">x_name</field>
+    <field name="on_delete" eval="False"/>
+    <field name="required" eval="True"/>
+    <field name="tracking">1</field>
+    <field name="translate">standard</field>
+  </record>
+  <record id="active_other_expense_e0244cd7-51a8-4f09-96f5-a8a7ae3c00f6" model="ir.model.fields" context="{'studio': True}">
+    <field name="ttype">boolean</field>
+    <field name="copied" eval="True"/>
+    <field name="field_description">Active</field>
+    <field name="model">x_other_expenses</field>
+    <field name="model_id" ref="other_expenses_b067dbfe-a73c-4ca7-b3f1-57cbe9f4dd53"/>
+    <field name="name">x_active</field>
+    <field name="on_delete" eval="False"/>
+    <field name="tracking">1</field>
+  </record>
+  <record id="currency_other_expen_3493f60e-5f39-4e02-aaa6-7d34df897ebb" model="ir.model.fields" context="{'studio': True}">
+    <field name="ttype">many2one</field>
+    <field name="copied" eval="True"/>
+    <field name="field_description">Currency</field>
+    <field name="model">x_other_expenses</field>
+    <field name="model_id" ref="other_expenses_b067dbfe-a73c-4ca7-b3f1-57cbe9f4dd53"/>
+    <field name="name">x_studio_currency_id</field>
+    <field name="relation">res.currency</field>
+  </record>
+  <record id="value_other_expenses_3a157f18-8b35-44a7-b5e9-4ea892da50dc" model="ir.model.fields" context="{'studio': True}">
+    <field name="ttype">monetary</field>
+    <field name="copied" eval="True"/>
+    <field name="field_description">Value</field>
+    <field name="model">x_other_expenses</field>
+    <field name="model_id" ref="other_expenses_b067dbfe-a73c-4ca7-b3f1-57cbe9f4dd53"/>
+    <field name="name">x_studio_value</field>
+    <field name="on_delete" eval="False"/>
+    <field name="tracking">1</field>
+    <field name="currency_field">x_studio_currency_id</field>
+  </record>
+  <record id="sequence_other_expen_ec011a5b-35af-4571-857f-ea156a00916a" model="ir.model.fields" context="{'studio': True}">
+    <field name="ttype">integer</field>
+    <field name="copied" eval="True"/>
+    <field name="field_description">Sequence</field>
+    <field name="model">x_other_expenses</field>
+    <field name="model_id" ref="other_expenses_b067dbfe-a73c-4ca7-b3f1-57cbe9f4dd53"/>
+    <field name="name">x_studio_sequence</field>
+    <field name="on_delete" eval="False"/>
+  </record>
+  <record id="new_monetary_other_e_c2eb863e-8efa-4723-a057-d8f2f2025fc1" model="ir.model.fields" context="{'studio': True}">
+    <field name="ttype">monetary</field>
+    <field name="copied" eval="True"/>
+    <field name="field_description">Other</field>
+    <field name="model">x_other_expenses</field>
+    <field name="model_id" ref="other_expenses_b067dbfe-a73c-4ca7-b3f1-57cbe9f4dd53"/>
+    <field name="name">x_studio_other</field>
+    <field name="on_delete" eval="False"/>
+    <field name="currency_field">x_studio_currency_id</field>
+  </record>
+  <record id="new_many2one_other_e_2a8ad7b9-9ce7-4e1a-a576-dbb77302e1ca" model="ir.model.fields" context="{'studio': True}">
+    <field name="ttype">many2one</field>
+    <field name="copied" eval="True"/>
+    <field name="field_description">Trip</field>
+    <field name="model">x_other_expenses</field>
+    <field name="model_id" ref="other_expenses_b067dbfe-a73c-4ca7-b3f1-57cbe9f4dd53"/>
+    <field name="name">x_studio_trip</field>
+    <field name="relation">x_trip</field>
+  </record>
+  <record id="new_many2one_other_e_2086bf34-308f-4a3d-963f-d2b0401a05f3" model="ir.model.fields" context="{'studio': True}">
+    <field name="ttype">many2one</field>
+    <field name="copied" eval="True"/>
+    <field name="field_description">Vehicle</field>
+    <field name="model">x_other_expenses</field>
+    <field name="model_id" ref="other_expenses_b067dbfe-a73c-4ca7-b3f1-57cbe9f4dd53"/>
+    <field name="name">x_studio_vehicle</field>
+    <field name="relation">fleet.vehicle</field>
+  </record>
+  <record id="new_selection_other__1d772d16-3cea-44c1-abd5-672b06cf8c49" model="ir.model.fields" context="{'studio': True}">
+    <field name="ttype">selection</field>
+    <field name="copied" eval="True"/>
+    <field name="field_description">Status</field>
+    <field name="model">x_other_expenses</field>
+    <field name="model_id" ref="other_expenses_b067dbfe-a73c-4ca7-b3f1-57cbe9f4dd53"/>
+    <field name="name">x_studio_status</field>
+    <field name="on_delete" eval="False"/>
+    <field name="selection">[('Pending', 'Pending'), ('Approved', 'Approved'), ('Rejected', 'Rejected')]</field>
+  </record>
 </odoo>

@@ -1,6 +1,5 @@
 /**
- * Model Discovery Script — searches for newly created custom models (e.g. Fuel Logs)
- * and lists their technical fields.
+ * Model Discovery Script — Filters custom models in JS to avoid SQL wildcard issue.
  * Run: node --env-file=.env.local scripts/discover-models.mjs
  */
 
@@ -30,27 +29,27 @@ async function executeKw(model, method, domain = [[]], kwargs = {}) {
 }
 
 async function main() {
-  console.log("🔍 Scanning Odoo for custom models...")
+  console.log("🔍 Scanning Odoo for newly created custom models...")
   
-  // Search for models containing "fuel" or "expense"
-  const models = await executeKw("ir.model", "search_read", 
-    [[
-      "model", "like", "x_"
-    ]], 
-    { fields: ["model", "name"] }
-  )
+  // Fetch all models and filter in Javascript
+  const allModels = await executeKw("ir.model", "search_read", [[]], { fields: ["model", "name"] })
 
-  if (models.__error) {
-    console.error("❌ Failed to search models:", models.__error)
+  if (allModels.__error) {
+    console.error("❌ Failed to search models:", allModels.__error)
     return
   }
 
-  console.log(`✅ Found ${models.length} custom model(s) in Odoo:\n`)
+  // Filter models that start with "x_" and are not our previous ones
+  const customModels = allModels.filter(m => 
+    m.model.startsWith("x_") && 
+    !["x_trip", "x_trip_stage", "x_fuel_logs"].includes(m.model)
+  )
 
-  for (const m of models) {
+  console.log(`✅ Found ${customModels.length} new custom model(s):\n`)
+
+  for (const m of customModels) {
     console.log(`📦 Model: ${m.model} (${m.name})`)
     
-    // Get fields for this model
     const fields = await executeKw("ir.model.fields", "search_read",
       [[["model_id.model", "=", m.model]]],
       { fields: ["name", "field_description", "ttype", "relation"] }
@@ -59,10 +58,11 @@ async function main() {
     if (fields && !fields.__error) {
       console.log("   Fields:")
       for (const f of fields) {
-        // Highlight custom studio fields or important relational ones
-        const isCustom = f.name.startsWith("x_") ? "⭐️" : "  "
-        const relationStr = f.relation ? ` → ${f.relation}` : ""
-        console.log(`      ${isCustom} ${f.name.padEnd(30)} | Type: ${f.ttype.padEnd(10)}${relationStr} | Label: ${f.field_description}`)
+        if (f.name.startsWith("x_") || f.name === "id") {
+          const isCustom = f.name.startsWith("x_") ? "⭐️" : "  "
+          const relationStr = f.relation ? ` → ${f.relation}` : ""
+          console.log(`      ${isCustom} ${f.name.padEnd(30)} | Type: ${f.ttype.padEnd(10)}${relationStr} | Label: ${f.field_description}`)
+        }
       }
     }
     console.log("\n" + "─".repeat(60) + "\n")

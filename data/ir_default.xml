@@ -44,4 +44,20 @@
     <field name="field_id" ref="sequence_fuel_logs_99d31329-0d44-4376-bda9-4ec65d8e3714"/>
     <field name="json_value">10</field>
   </record>
+  <record id="active_other_expense_fc791095-1789-4a89-883c-9b5e214a2680" model="ir.default" context="{'studio': True}">
+    <field name="field_id" ref="active_other_expense_e0244cd7-51a8-4f09-96f5-a8a7ae3c00f6"/>
+    <field name="json_value">true</field>
+  </record>
+  <record id="currency_other_expen_eaa2ef0c-a8c3-4b3a-b690-a8aa0d25ba43" model="ir.default" context="{'studio': True}">
+    <field name="field_id" ref="currency_other_expen_3493f60e-5f39-4e02-aaa6-7d34df897ebb"/>
+    <field name="json_value">20</field>
+  </record>
+  <record id="sequence_other_expen_c2d7bbf0-3911-4b12-bb7f-acaaf0440405" model="ir.default" context="{'studio': True}">
+    <field name="field_id" ref="sequence_other_expen_ec011a5b-35af-4571-857f-ea156a00916a"/>
+    <field name="json_value">10</field>
+  </record>
+  <record id="status_other_expense_2e783c86-ac7b-48cb-b50c-9f8427bc9cac" model="ir.default" context="{'studio': True}">
+    <field name="field_id" ref="new_selection_other__1d772d16-3cea-44c1-abd5-672b06cf8c49"/>
+    <field name="json_value">"Pending"</field>
+  </record>
 </odoo>

@@ -250,3 +250,42 @@ export type CreateFuelLogPayload = {
   date: string
 }
 
+// ═══════════════════════════════════════════════════════════════════════════
+// Other Expense  (model: x_other_expenses)
+// ═══════════════════════════════════════════════════════════════════════════
+
+export type ExpenseStatus = "Approved" | "Pending" | "Rejected"
+
+export type OdooRawOtherExpense = {
+  id: number
+  x_name: string
+  x_studio_trip: [number, string] | false
+  x_studio_vehicle: [number, string] | false
+  x_studio_value: number // toll cost
+  x_studio_other: number // other cost
+  x_studio_status: ExpenseStatus | false
+  x_studio_currency_id: [number, string] | false
+}
+
+export type OtherExpense = {
+  id: number
+  description: string
+  tripId: number | null
+  tripDisplay: string
+  vehicleId: number | null
+  vehicleDisplay: string
+  toll: number
+  other: number
+  status: ExpenseStatus
+}
+
+export type CreateOtherExpensePayload = {
+  description: string
+  tripId: number
+  vehicleId: number
+  toll: number
+  other: number
+  status?: ExpenseStatus
+}
+
+

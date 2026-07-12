@@ -28,4 +28,13 @@
     <field name="name">Fuel Logs</field>
     <field name="parent_id" ref="fuel_logs_a512b5a0-a6ad-47e4-b033-5d666d89d46e"/>
   </record>
+  <record id="other_expenses_3476bd19-cb4a-4bcb-aa45-7b3259aa289f" model="ir.ui.menu" context="{'studio': True}">
+    <field name="name">Other Expenses</field>
+    <field name="web_icon">fa fa-home,#00CEB3,#FFFFFF</field>
+  </record>
+  <record id="other_expenses_other_18eb8149-45f5-41ac-a102-f336e797df0f" model="ir.ui.menu" context="{'studio': True}">
+    <field name="action" ref="other_expenses_f2956bb5-47dc-4352-9cba-81c66ee54a78"/>
+    <field name="name">Other Expenses</field>
+    <field name="parent_id" ref="other_expenses_3476bd19-cb4a-4bcb-aa45-7b3259aa289f"/>
+  </record>
 </odoo>

@@ -51,4 +51,21 @@
     <field name="perm_read" eval="True"/>
     <field name="perm_write" eval="True"/>
   </record>
+  <record id="other_expenses_group_f572f015-56f1-41ca-9d71-2f7fe9cb859e" model="ir.model.access" context="{'studio': True}">
+    <field name="group_id" ref="base.group_system"/>
+    <field name="model_id" ref="other_expenses_b067dbfe-a73c-4ca7-b3f1-57cbe9f4dd53"/>
+    <field name="name">Other Expenses group_system</field>
+    <field name="perm_create" eval="True"/>
+    <field name="perm_read" eval="True"/>
+    <field name="perm_unlink" eval="True"/>
+    <field name="perm_write" eval="True"/>
+  </record>
+  <record id="other_expenses_group_cc015067-73c6-4199-9ab2-7b03467a7171" model="ir.model.access" context="{'studio': True}">
+    <field name="group_id" ref="base.group_user"/>
+    <field name="model_id" ref="other_expenses_b067dbfe-a73c-4ca7-b3f1-57cbe9f4dd53"/>
+    <field name="name">Other Expenses group_user</field>
+    <field name="perm_create" eval="True"/>
+    <field name="perm_read" eval="True"/>
+    <field name="perm_write" eval="True"/>
+  </record>
 </odoo>

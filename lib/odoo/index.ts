@@ -58,6 +58,11 @@ export type {
   OdooRawFuelLog,
   FuelLog,
   CreateFuelLogPayload,
+  // Other Expenses
+  OdooRawOtherExpense,
+  OtherExpense,
+  ExpenseStatus,
+  CreateOtherExpensePayload,
 } from "./types"
 
 // Domain services
@@ -111,3 +116,10 @@ export {
   createFuelLog,
   mapFuelLog,
 } from "./fuel-logs"
+
+export {
+  getOtherExpenses,
+  createOtherExpense,
+  updateExpenseStatus,
+  mapOtherExpense,
+} from "./expenses"

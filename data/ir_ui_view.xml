@@ -310,4 +310,114 @@
     <field name="priority">99</field>
     <field name="type">form</field>
   </record>
+  <record id="default_list_view_fo_e127da36-c111-46ff-a88a-87d554ef5702" model="ir.ui.view" context="{'studio': True}">
+    <field name="arch" type="xml">
+      <list>
+        <field name="x_studio_sequence" widget="handle"/>
+        <field name="x_name"/>
+        <field name="x_studio_currency_id" invisible="1"/>
+        <field name="x_studio_value" sum="Total"/>
+      </list>
+    </field>
+    <field name="key">studio_customization.default_list_view_fo_e127da36-c111-46ff-a88a-87d554ef5702</field>
+    <field name="model">x_other_expenses</field>
+    <field name="name">Default list view for x_other_expenses</field>
+    <field name="type">list</field>
+  </record>
+  <record id="default_form_view_fo_c321422d-d4b6-443d-94c7-bc1d3931f58f" model="ir.ui.view" context="{'studio': True}">
+    <field name="arch" type="xml">
+      <form>
+        <header/>
+        <sheet string="Other Expenses">
+          <widget name="web_ribbon" text="Archived" bg_color="text-bg-danger" invisible="x_active"/>
+          <field name="x_active" invisible="1"/>
+          <div class="oe_title">
+            <h1>
+              <field name="x_name" required="1" placeholder="Name..."/>
+            </h1>
+          </div>
+          <group name="studio_group_d809c7">
+            <group name="studio_group_d809c7_left">
+              <field name="x_studio_currency_id" invisible="1"/>
+              <field name="x_studio_value"/>
+            </group>
+            <group name="studio_group_d809c7_right"/>
+          </group>
+        </sheet>
+        <chatter/>
+      </form>
+    </field>
+    <field name="key">studio_customization.default_form_view_fo_c321422d-d4b6-443d-94c7-bc1d3931f58f</field>
+    <field name="model">x_other_expenses</field>
+    <field name="name">Default form view for x_other_expenses</field>
+    <field name="type">form</field>
+  </record>
+  <record id="default_search_view__bb055ee5-8550-452e-8049-09f9f4af678d" model="ir.ui.view" context="{'studio': True}">
+    <field name="arch" type="xml">
+      <search>
+        <field name="x_name"/>
+        <filter invisible="1" string="My Activities" name="filter_activities_my" domain="[['activity_user_id', '=', uid]]"/>
+        <separator/>
+        <filter invisible="1" string="Late Activities" name="activities_overdue" domain="[('my_activity_date_deadline', '&lt;', 'today')]"/>
+        <filter invisible="1" string="Today Activities" name="activities_today" domain="[('my_activity_date_deadline', '=', 'today')]"/>
+        <filter invisible="1" string="Future Activities" name="activities_upcoming_all" domain="[('my_activity_date_deadline', '&gt;', 'today')]"/>
+        <separator/>
+        <separator/>
+        <filter string="Archived" name="archived_x_other_expenses" domain="[['x_active', '=', False]]"/>
+        <separator/>
+      </search>
+    </field>
+    <field name="key">studio_customization.default_search_view__bb055ee5-8550-452e-8049-09f9f4af678d</field>
+    <field name="model">x_other_expenses</field>
+    <field name="name">Default search view for x_other_expenses</field>
+    <field name="type">search</field>
+  </record>
+  <record id="default_pivot_view_f_86c5fab4-b7ef-4a7c-a911-d595cc6c2275" model="ir.ui.view" context="{'studio': True}">
+    <field name="arch" type="xml">
+      <pivot sample="1">
+        <field name="x_studio_value" type="measure"/>
+      </pivot>
+    </field>
+    <field name="key">studio_customization.default_pivot_view_f_86c5fab4-b7ef-4a7c-a911-d595cc6c2275</field>
+    <field name="model">x_other_expenses</field>
+    <field name="name">Default pivot view for x_other_expenses</field>
+    <field name="type">pivot</field>
+  </record>
+  <record id="default_graph_view_f_1fe50021-6bcd-4567-90b2-ed250ac348ab" model="ir.ui.view" context="{'studio': True}">
+    <field name="arch" type="xml">
+      <graph sample="1">
+        <field name="x_studio_value" type="measure"/>
+        <field name="create_date" type="row"/>
+      </graph>
+    </field>
+    <field name="key">studio_customization.default_graph_view_f_1fe50021-6bcd-4567-90b2-ed250ac348ab</field>
+    <field name="model">x_other_expenses</field>
+    <field name="name">Default graph view for x_other_expenses</field>
+    <field name="type">graph</field>
+  </record>
+  <record id="odoo_studio_default__7e487032-095c-411a-a011-2b6c5ffadb20" model="ir.ui.view" context="{'studio': True}">
+    <field name="arch" type="xml">
+      <data>
+        <xpath expr="/form//field[@name='x_studio_currency_id']" position="after">
+          <field name="x_studio_currency_id"/>
+        </xpath>
+        <xpath expr="/form//field[@name='x_studio_value']" position="after">
+          <field name="x_studio_other"/>
+          <field name="x_studio_trip" options="{'create_name_field': 'x_name'}"/>
+          <field name="x_studio_vehicle"/>
+          <field name="x_studio_status"/>
+        </xpath>
+        <xpath expr="/form//field[@name='x_studio_value']" position="attributes">
+          <attribute name="string">Toll</attribute>
+        </xpath>
+      </data>
+    </field>
+    <field name="inherit_id" ref="default_form_view_fo_c321422d-d4b6-443d-94c7-bc1d3931f58f"/>
+    <field name="key">studio_customization.odoo_studio_default__7e487032-095c-411a-a011-2b6c5ffadb20</field>
+    <field name="mode">extension</field>
+    <field name="model">x_other_expenses</field>
+    <field name="name">Odoo Studio: Default form view for x_other_expenses customization</field>
+    <field name="priority">99</field>
+    <field name="type">form</field>
+  </record>
 </odoo>

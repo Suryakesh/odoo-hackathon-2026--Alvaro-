@@ -1,5 +1,5 @@
 /**
- * Final verification — verifies that the new custom Fuel Logs model (x_fuel_logs) works.
+ * Live Odoo API Verification — queries custom Fuel Logs and custom Other Expenses models.
  * Run: node --env-file=.env.local scripts/test-odoo-connection.mjs
  */
 
@@ -32,18 +32,10 @@ async function main() {
   console.log("🔌 Odoo API — Custom Models Verification")
   console.log(`   URL: ${URL}  |  DB: ${DB}\n`)
 
-  // Query the newly created x_fuel_logs model!
+  // 1. Query custom Fuel Logs
   console.log("⛽️ Querying custom Fuel Logs (x_fuel_logs)...")
   const fuelLogs = await executeKw("x_fuel_logs", "search_read", [[]], {
-    fields: [
-      "id",
-      "x_name",
-      "x_studio_vehicle",
-      "x_studio_liters",
-      "x_studio_cost",
-      "x_studio_value",
-      "x_studio_date"
-    ]
+    fields: ["id", "x_name", "x_studio_vehicle", "x_studio_liters", "x_studio_cost", "x_studio_date"]
   })
 
   if (fuelLogs.__error) {
@@ -52,8 +44,25 @@ async function main() {
     console.log(`   ✅ Found ${fuelLogs.length} fuel log(s):`)
     for (const log of fuelLogs) {
       const vehicle = log.x_studio_vehicle ? log.x_studio_vehicle[1] : "No Vehicle"
-      const cost = log.x_studio_cost || log.x_studio_value || 0
-      console.log(`      - ID: ${log.id} | Desc: "${log.x_name}" | Vehicle: "${vehicle}" | Liters: ${log.x_studio_liters}L | Cost: ₹${cost} | Date: ${log.x_studio_date || "—"}`)
+      console.log(`      - ID: ${log.id} | Desc: "${log.x_name}" | Vehicle: "${vehicle}" | Liters: ${log.x_studio_liters}L | Cost: ₹${log.x_studio_cost} | Date: ${log.x_studio_date || "—"}`)
+    }
+  }
+  console.log("\n" + "─".repeat(50) + "\n")
+
+  // 2. Query custom Other Expenses
+  console.log("💵 Querying custom Other Expenses (x_other_expenses)...")
+  const expenses = await executeKw("x_other_expenses", "search_read", [[]], {
+    fields: ["id", "x_name", "x_studio_trip", "x_studio_vehicle", "x_studio_value", "x_studio_other", "x_studio_status"]
+  })
+
+  if (expenses.__error) {
+    console.error("   ❌ Failed to query Other Expenses:", expenses.__error)
+  } else {
+    console.log(`   ✅ Found ${expenses.length} expense log(s):`)
+    for (const exp of expenses) {
+      const trip = exp.x_studio_trip ? exp.x_studio_trip[1] : "No Trip"
+      const vehicle = exp.x_studio_vehicle ? exp.x_studio_vehicle[1] : "No Vehicle"
+      console.log(`      - ID: ${exp.id} | Desc: "${exp.x_name}" | Trip: "${trip}" | Vehicle: "${vehicle}" | Toll: ₹${exp.x_studio_value} | Other: ₹${exp.x_studio_other} | Status: ${exp.x_studio_status}`)
     }
   }
 
