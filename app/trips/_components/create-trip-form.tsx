@@ -15,29 +15,16 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select"
-// TEMPORARY: real driver data isn't available from the Odoo backend yet,
-// so the Driver dropdown still uses mock data. Swap this for a
-// fetch("/api/drivers") once that endpoint exists.
-import { DRIVERS } from "@/app/drivers/_components/driver-data"
-import type { Vehicle } from "@/lib/odoo"
+import type { Driver, Vehicle } from "@/lib/odoo"
 
 import type { TripStatus } from "./trip-data"
 import { TripStepper } from "./trip-stepper"
-
-const AVAILABLE_DRIVERS = DRIVERS.filter((d) => d.status === "Available")
-
-const DRIVER_OPTIONS = Object.fromEntries(
-  AVAILABLE_DRIVERS.map((d) => [
-    d.licenseNumber,
-    `${d.name} — ${d.licenseCategory}`,
-  ])
-)
 
 const INITIAL_FORM = {
   source: "",
   destination: "",
   vehicleRegNo: "",
-  driverLicenseNumber: "",
+  driverId: "",
   cargoWeight: "",
   plannedDistance: "",
 }
@@ -48,6 +35,9 @@ export function CreateTripForm() {
 
   const [vehicles, setVehicles] = useState<Vehicle[] | null>(null)
   const [vehiclesError, setVehiclesError] = useState<string | null>(null)
+
+  const [drivers, setDrivers] = useState<Driver[] | null>(null)
+  const [driversError, setDriversError] = useState<string | null>(null)
 
   useEffect(() => {
     let cancelled = false
@@ -62,6 +52,18 @@ export function CreateTripForm() {
       })
       .catch(() => {
         if (!cancelled) setVehiclesError("Failed to load vehicles")
+      })
+
+    fetch("/api/drivers?status=Available")
+      .then((res) => {
+        if (!res.ok) throw new Error("Request failed")
+        return res.json()
+      })
+      .then((data: Driver[]) => {
+        if (!cancelled) setDrivers(data)
+      })
+      .catch(() => {
+        if (!cancelled) setDriversError("Failed to load drivers")
       })
 
     return () => {
@@ -93,11 +95,21 @@ export function CreateTripForm() {
     ? cargoWeightNum - selectedVehicle.maxCapacityKg
     : 0
 
+  const availableDrivers = (drivers ?? []).filter(
+    (d) => d.status === "Available"
+  )
+  const driverOptions = Object.fromEntries(
+    availableDrivers.map((d) => [
+      String(d.id),
+      `${d.name} — ${d.licenseCategory}`,
+    ])
+  )
+
   const isFormComplete =
     form.source.trim() !== "" &&
     form.destination.trim() !== "" &&
     !!selectedVehicle &&
-    form.driverLicenseNumber !== "" &&
+    form.driverId !== "" &&
     cargoWeightNum > 0 &&
     plannedDistanceNum > 0
 
@@ -178,27 +190,33 @@ export function CreateTripForm() {
 
           <div className="flex flex-col gap-1.5">
             <Label htmlFor="driver">Driver</Label>
-            <Select
-              items={DRIVER_OPTIONS}
-              value={form.driverLicenseNumber || null}
-              onValueChange={(value) =>
-                setForm((f) => ({
-                  ...f,
-                  driverLicenseNumber: (value as string) ?? "",
-                }))
-              }
-            >
-              <SelectTrigger id="driver" className="w-full">
-                <SelectValue placeholder="Select available driver" />
-              </SelectTrigger>
-              <SelectContent>
-                {AVAILABLE_DRIVERS.map((d) => (
-                  <SelectItem key={d.licenseNumber} value={d.licenseNumber}>
-                    {d.name} — {d.licenseCategory}
-                  </SelectItem>
-                ))}
-              </SelectContent>
-            </Select>
+            {driversError ? (
+              <p className="text-sm text-red-400">{driversError}</p>
+            ) : !drivers ? (
+              <p className="text-sm text-neutral-500">Loading drivers...</p>
+            ) : (
+              <Select
+                items={driverOptions}
+                value={form.driverId || null}
+                onValueChange={(value) =>
+                  setForm((f) => ({
+                    ...f,
+                    driverId: (value as string) ?? "",
+                  }))
+                }
+              >
+                <SelectTrigger id="driver" className="w-full">
+                  <SelectValue placeholder="Select available driver" />
+                </SelectTrigger>
+                <SelectContent>
+                  {availableDrivers.map((d) => (
+                    <SelectItem key={d.id} value={String(d.id)}>
+                      {d.name} — {d.licenseCategory}
+                    </SelectItem>
+                  ))}
+                </SelectContent>
+              </Select>
+            )}
           </div>
 
           <div className="flex flex-col gap-1.5">
