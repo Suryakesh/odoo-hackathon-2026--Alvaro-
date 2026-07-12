@@ -1,17 +1,44 @@
-# Odoo Hackathon 2026
+# TransitOps
 
-Team: Surya Kesharwani (Lead), Jay1719-git, Chaitanya Pal, shiiikha08
+Smart Transport Operations Platform — built for Odoo Hackathon 2026.
+
+## Overview
+TransitOps digitizes vehicle, driver, dispatch, maintenance, and expense management for logistics fleets, replacing manual spreadsheets with a centralized platform that enforces business rules and provides real-time operational visibility.
+
+## Team
+- Surya Kesharwani — Team Lead, Backend (Odoo integration, API layer)
+- Jay1719-git — Backend support, Integration/QA
+- Chaitanya Pal — Frontend, UI/UX
+- shiiikha08 — Demo, Presentation
+
+## Features
+- Role-based authentication (Fleet Manager, Dispatcher, Safety Officer, Financial Analyst)
+- Real-time dashboard with fleet KPIs
+- Vehicle registry with unique registration enforcement
+- Driver management with license expiry and safety score tracking
+- Trip dispatcher with automatic cargo capacity validation
+- Automatic status transitions (vehicle/driver availability on dispatch/completion)
+- Fuel and expense tracking with auto-calculated operational cost
+- Reports & analytics with CSV export
+- Settings with RBAC permissions matrix
 
 ## Tech Stack
-- Next.js
-- TypeScript
-- Tailwind CSS
-- shadcn/ui
+- Next.js (App Router), TypeScript, Tailwind CSS, shadcn/ui
+- Framer Motion, Recharts, Lucide React
+- Backend: Odoo (JSON-RPC API integration)
+
+## Business Rules Enforced
+- Cargo weight cannot exceed vehicle max capacity
+- Expired-license or suspended drivers blocked from trip assignment
+- Retired/In Shop vehicles hidden from dispatch
+- Dispatch/complete/cancel automatically updates vehicle and driver status
 
 ## Getting Started
 
 ```bash
-
+npm install
+cp .env.local.example .env.local
+# add your Odoo API credentials to .env.local
 npm run dev
 ```
 
