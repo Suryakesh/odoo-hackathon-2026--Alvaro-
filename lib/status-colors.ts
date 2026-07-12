@@ -28,3 +28,10 @@ export const DRIVER_STATUS_COLOR: Record<string, StatusColor> = {
   "Off Duty": "grey",
   Suspended: "red",
 }
+
+export const TRIP_STAGE_COLOR: Record<string, StatusColor> = {
+  Draft: "green",
+  Dispatched: "blue",
+  Completed: "grey",
+  Cancelled: "grey",
+}
