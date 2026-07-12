@@ -1,6 +1,6 @@
 "use client"
 
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { AlertTriangle } from "lucide-react"
 
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert"
@@ -15,21 +15,16 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select"
+// TEMPORARY: real driver data isn't available from the Odoo backend yet,
+// so the Driver dropdown still uses mock data. Swap this for a
+// fetch("/api/drivers") once that endpoint exists.
 import { DRIVERS } from "@/app/drivers/_components/driver-data"
-import { VEHICLES } from "@/app/fleet/_components/vehicle-data"
+import type { Vehicle } from "@/lib/odoo"
 
 import type { TripStatus } from "./trip-data"
 import { TripStepper } from "./trip-stepper"
 
-const AVAILABLE_VEHICLES = VEHICLES.filter((v) => v.status === "Available")
 const AVAILABLE_DRIVERS = DRIVERS.filter((d) => d.status === "Available")
-
-const VEHICLE_OPTIONS = Object.fromEntries(
-  AVAILABLE_VEHICLES.map((v) => [
-    v.regNo,
-    `${v.regNo} - ${v.maxCapacityKg} kg capacity`,
-  ])
-)
 
 const DRIVER_OPTIONS = Object.fromEntries(
   AVAILABLE_DRIVERS.map((d) => [
@@ -51,7 +46,40 @@ export function CreateTripForm() {
   const [form, setForm] = useState(INITIAL_FORM)
   const [stage, setStage] = useState<TripStatus>("Draft")
 
-  const selectedVehicle = AVAILABLE_VEHICLES.find(
+  const [vehicles, setVehicles] = useState<Vehicle[] | null>(null)
+  const [vehiclesError, setVehiclesError] = useState<string | null>(null)
+
+  useEffect(() => {
+    let cancelled = false
+
+    fetch("/api/vehicles")
+      .then((res) => {
+        if (!res.ok) throw new Error("Request failed")
+        return res.json()
+      })
+      .then((data: Vehicle[]) => {
+        if (!cancelled) setVehicles(data)
+      })
+      .catch(() => {
+        if (!cancelled) setVehiclesError("Failed to load vehicles")
+      })
+
+    return () => {
+      cancelled = true
+    }
+  }, [])
+
+  const availableVehicles = (vehicles ?? []).filter(
+    (v) => v.status === "Available"
+  )
+  const vehicleOptions = Object.fromEntries(
+    availableVehicles.map((v) => [
+      v.regNo,
+      `${v.regNo} - ${v.maxCapacityKg} kg capacity`,
+    ])
+  )
+
+  const selectedVehicle = availableVehicles.find(
     (v) => v.regNo === form.vehicleRegNo
   )
   const cargoWeightNum = Number(form.cargoWeight) || 0
@@ -119,24 +147,33 @@ export function CreateTripForm() {
 
           <div className="flex flex-col gap-1.5">
             <Label htmlFor="vehicle">Vehicle</Label>
-            <Select
-              items={VEHICLE_OPTIONS}
-              value={form.vehicleRegNo || null}
-              onValueChange={(value) =>
-                setForm((f) => ({ ...f, vehicleRegNo: (value as string) ?? "" }))
-              }
-            >
-              <SelectTrigger id="vehicle" className="w-full">
-                <SelectValue placeholder="Select available vehicle" />
-              </SelectTrigger>
-              <SelectContent>
-                {AVAILABLE_VEHICLES.map((v) => (
-                  <SelectItem key={v.regNo} value={v.regNo}>
-                    {v.regNo} - {v.maxCapacityKg} kg capacity
-                  </SelectItem>
-                ))}
-              </SelectContent>
-            </Select>
+            {vehiclesError ? (
+              <p className="text-sm text-red-400">{vehiclesError}</p>
+            ) : !vehicles ? (
+              <p className="text-sm text-neutral-500">Loading vehicles...</p>
+            ) : (
+              <Select
+                items={vehicleOptions}
+                value={form.vehicleRegNo || null}
+                onValueChange={(value) =>
+                  setForm((f) => ({
+                    ...f,
+                    vehicleRegNo: (value as string) ?? "",
+                  }))
+                }
+              >
+                <SelectTrigger id="vehicle" className="w-full">
+                  <SelectValue placeholder="Select available vehicle" />
+                </SelectTrigger>
+                <SelectContent>
+                  {availableVehicles.map((v) => (
+                    <SelectItem key={v.regNo} value={v.regNo}>
+                      {v.regNo} - {v.maxCapacityKg} kg capacity
+                    </SelectItem>
+                  ))}
+                </SelectContent>
+              </Select>
+            )}
           </div>
 
           <div className="flex flex-col gap-1.5">

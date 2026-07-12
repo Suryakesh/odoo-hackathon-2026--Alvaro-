@@ -20,7 +20,7 @@ const NAV_ITEMS = [
   { label: "Maintenance", icon: Wrench, href: "#" },
   { label: "Fuel & Expenses", icon: Fuel, href: "/fuel-expenses" },
   { label: "Analytics", icon: BarChart3, href: "/analytics" },
-  { label: "Settings", icon: Settings, href: "#" },
+  { label: "Settings", icon: Settings, href: "/settings" },
 ] as const
 
 export type NavLabel = (typeof NAV_ITEMS)[number]["label"]
