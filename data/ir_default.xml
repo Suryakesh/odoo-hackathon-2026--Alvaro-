@@ -32,4 +32,16 @@
     <field name="field_id" ref="new_integer_contact_88da47c3-6086-4784-9774-6bd9b67f4c21"/>
     <field name="json_value">"0"</field>
   </record>
+  <record id="active_fuel_logs_47f9ac97-8ae1-47f7-8d25-ecc335b401b8" model="ir.default" context="{'studio': True}">
+    <field name="field_id" ref="active_fuel_logs_e4d5620c-4641-4e72-9202-d028098bd85d"/>
+    <field name="json_value">true</field>
+  </record>
+  <record id="currency_fuel_logs_91bb7879-51d9-4e1c-91d7-9a57e2e531f1" model="ir.default" context="{'studio': True}">
+    <field name="field_id" ref="currency_fuel_logs_1d2dc705-e6e5-4bf6-8e64-daa80a83f97a"/>
+    <field name="json_value">20</field>
+  </record>
+  <record id="sequence_fuel_logs_a977e740-03da-4b73-9671-c59e5d2f0e4f" model="ir.default" context="{'studio': True}">
+    <field name="field_id" ref="sequence_fuel_logs_99d31329-0d44-4376-bda9-4ec65d8e3714"/>
+    <field name="json_value">10</field>
+  </record>
 </odoo>

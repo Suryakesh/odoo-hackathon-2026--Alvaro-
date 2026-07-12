@@ -19,4 +19,13 @@
     <field name="name">Trip Stages</field>
     <field name="parent_id" ref="trip_configuration_4854a097-91c1-4641-8cc3-ab02f8ecc8c6"/>
   </record>
+  <record id="fuel_logs_a512b5a0-a6ad-47e4-b033-5d666d89d46e" model="ir.ui.menu" context="{'studio': True}">
+    <field name="name">Fuel Logs</field>
+    <field name="web_icon">fa fa-home,#00CEB3,#FFFFFF</field>
+  </record>
+  <record id="fuel_logs_fuel_logs_d4aed486-8134-47b8-b68f-f21aa73272fb" model="ir.ui.menu" context="{'studio': True}">
+    <field name="action" ref="fuel_logs_62e5f9c2-8d3c-4284-bcfc-1d7435f9b8c2"/>
+    <field name="name">Fuel Logs</field>
+    <field name="parent_id" ref="fuel_logs_a512b5a0-a6ad-47e4-b033-5d666d89d46e"/>
+  </record>
 </odoo>

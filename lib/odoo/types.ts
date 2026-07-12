@@ -217,3 +217,36 @@ export type CreateVehiclePayload = {
   maxCapacityKg: number
   status?: VehicleStatus
 }
+
+// ═══════════════════════════════════════════════════════════════════════════
+// Fuel Log  (model: x_fuel_logs)
+// ═══════════════════════════════════════════════════════════════════════════
+
+export type OdooRawFuelLog = {
+  id: number
+  x_name: string
+  x_studio_vehicle: [number, string] | false
+  x_studio_liters: number
+  x_studio_cost: number
+  x_studio_value: number // backup currency field
+  x_studio_date: string | false
+}
+
+export type FuelLog = {
+  id: number
+  description: string
+  vehicleId: number | null
+  vehicleDisplay: string
+  liters: number
+  cost: number
+  date: string
+}
+
+export type CreateFuelLogPayload = {
+  description: string
+  vehicleId: number
+  liters: number
+  cost: number
+  date: string
+}
+

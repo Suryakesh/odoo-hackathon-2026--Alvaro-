@@ -248,4 +248,92 @@
     <field name="on_delete" eval="False"/>
     <field name="selection">[('Available', 'Available'), ('On Trip', 'On Trip'), ('Off Duty', 'Off Duty'), ('Suspended', 'Suspended')]</field>
   </record>
+  <record id="description_fuel_log_92302a9a-9652-45fb-8ef9-9b3bc996a26c" model="ir.model.fields" context="{'studio': True}">
+    <field name="ttype">char</field>
+    <field name="copied" eval="True"/>
+    <field name="field_description">Description</field>
+    <field name="model">x_fuel_logs</field>
+    <field name="model_id" ref="fuel_logs_13548919-9288-402c-97bb-71fd0dd1749d"/>
+    <field name="name">x_name</field>
+    <field name="on_delete" eval="False"/>
+    <field name="required" eval="True"/>
+    <field name="tracking">1</field>
+    <field name="translate">standard</field>
+  </record>
+  <record id="active_fuel_logs_e4d5620c-4641-4e72-9202-d028098bd85d" model="ir.model.fields" context="{'studio': True}">
+    <field name="ttype">boolean</field>
+    <field name="copied" eval="True"/>
+    <field name="field_description">Active</field>
+    <field name="model">x_fuel_logs</field>
+    <field name="model_id" ref="fuel_logs_13548919-9288-402c-97bb-71fd0dd1749d"/>
+    <field name="name">x_active</field>
+    <field name="on_delete" eval="False"/>
+    <field name="tracking">1</field>
+  </record>
+  <record id="currency_fuel_logs_1d2dc705-e6e5-4bf6-8e64-daa80a83f97a" model="ir.model.fields" context="{'studio': True}">
+    <field name="ttype">many2one</field>
+    <field name="copied" eval="True"/>
+    <field name="field_description">Currency</field>
+    <field name="model">x_fuel_logs</field>
+    <field name="model_id" ref="fuel_logs_13548919-9288-402c-97bb-71fd0dd1749d"/>
+    <field name="name">x_studio_currency_id</field>
+    <field name="relation">res.currency</field>
+  </record>
+  <record id="value_fuel_logs_5bd9f7c6-3f65-46a4-b168-4be4e5c276f6" model="ir.model.fields" context="{'studio': True}">
+    <field name="ttype">monetary</field>
+    <field name="copied" eval="True"/>
+    <field name="field_description">Value</field>
+    <field name="model">x_fuel_logs</field>
+    <field name="model_id" ref="fuel_logs_13548919-9288-402c-97bb-71fd0dd1749d"/>
+    <field name="name">x_studio_value</field>
+    <field name="on_delete" eval="False"/>
+    <field name="tracking">1</field>
+    <field name="currency_field">x_studio_currency_id</field>
+  </record>
+  <record id="sequence_fuel_logs_99d31329-0d44-4376-bda9-4ec65d8e3714" model="ir.model.fields" context="{'studio': True}">
+    <field name="ttype">integer</field>
+    <field name="copied" eval="True"/>
+    <field name="field_description">Sequence</field>
+    <field name="model">x_fuel_logs</field>
+    <field name="model_id" ref="fuel_logs_13548919-9288-402c-97bb-71fd0dd1749d"/>
+    <field name="name">x_studio_sequence</field>
+    <field name="on_delete" eval="False"/>
+  </record>
+  <record id="new_monetary_fuel_lo_6741b390-55e7-4db3-a592-2902ca7f8be0" model="ir.model.fields" context="{'studio': True}">
+    <field name="ttype">monetary</field>
+    <field name="copied" eval="True"/>
+    <field name="field_description">Cost</field>
+    <field name="model">x_fuel_logs</field>
+    <field name="model_id" ref="fuel_logs_13548919-9288-402c-97bb-71fd0dd1749d"/>
+    <field name="name">x_studio_cost</field>
+    <field name="on_delete" eval="False"/>
+    <field name="currency_field">x_studio_currency_id</field>
+  </record>
+  <record id="new_many2one_fuel_lo_9aa84571-6a98-4d31-b70d-cb431256ead5" model="ir.model.fields" context="{'studio': True}">
+    <field name="ttype">many2one</field>
+    <field name="copied" eval="True"/>
+    <field name="field_description">Vehicle</field>
+    <field name="model">x_fuel_logs</field>
+    <field name="model_id" ref="fuel_logs_13548919-9288-402c-97bb-71fd0dd1749d"/>
+    <field name="name">x_studio_vehicle</field>
+    <field name="relation">fleet.vehicle</field>
+  </record>
+  <record id="new_decimal_fuel_log_78bbc1ab-4910-4a05-9051-7057c6230798" model="ir.model.fields" context="{'studio': True}">
+    <field name="ttype">float</field>
+    <field name="copied" eval="True"/>
+    <field name="field_description">Liters</field>
+    <field name="model">x_fuel_logs</field>
+    <field name="model_id" ref="fuel_logs_13548919-9288-402c-97bb-71fd0dd1749d"/>
+    <field name="name">x_studio_liters</field>
+    <field name="on_delete" eval="False"/>
+  </record>
+  <record id="new_date_fuel_logs_a05ed8aa-d6bc-4a9f-863a-35bf046108b1" model="ir.model.fields" context="{'studio': True}">
+    <field name="ttype">date</field>
+    <field name="copied" eval="True"/>
+    <field name="field_description">Date</field>
+    <field name="model">x_fuel_logs</field>
+    <field name="model_id" ref="fuel_logs_13548919-9288-402c-97bb-71fd0dd1749d"/>
+    <field name="name">x_studio_date</field>
+    <field name="on_delete" eval="False"/>
+  </record>
 </odoo>

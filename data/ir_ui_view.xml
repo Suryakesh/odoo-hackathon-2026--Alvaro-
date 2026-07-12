@@ -204,4 +204,110 @@
     <field name="priority">990</field>
     <field name="type">form</field>
   </record>
+  <record id="default_list_view_fo_56ca8ece-8a2a-4c49-90f4-6aaa6dc07f2f" model="ir.ui.view" context="{'studio': True}">
+    <field name="arch" type="xml">
+      <list>
+        <field name="x_studio_sequence" widget="handle"/>
+        <field name="x_name"/>
+        <field name="x_studio_currency_id" invisible="1"/>
+        <field name="x_studio_value" sum="Total"/>
+      </list>
+    </field>
+    <field name="key">studio_customization.default_list_view_fo_56ca8ece-8a2a-4c49-90f4-6aaa6dc07f2f</field>
+    <field name="model">x_fuel_logs</field>
+    <field name="name">Default list view for x_fuel_logs</field>
+    <field name="type">list</field>
+  </record>
+  <record id="default_form_view_fo_cbe2c270-a62a-4243-8044-04e61f373e40" model="ir.ui.view" context="{'studio': True}">
+    <field name="arch" type="xml">
+      <form>
+        <header/>
+        <sheet string="Fuel Logs">
+          <widget name="web_ribbon" text="Archived" bg_color="text-bg-danger" invisible="x_active"/>
+          <field name="x_active" invisible="1"/>
+          <div class="oe_title">
+            <h1>
+              <field name="x_name" required="1" placeholder="Name..."/>
+            </h1>
+          </div>
+          <group name="studio_group_b4196e">
+            <group name="studio_group_b4196e_left">
+              <field name="x_studio_currency_id" invisible="1"/>
+              <field name="x_studio_value"/>
+            </group>
+            <group name="studio_group_b4196e_right"/>
+          </group>
+        </sheet>
+        <chatter/>
+      </form>
+    </field>
+    <field name="key">studio_customization.default_form_view_fo_cbe2c270-a62a-4243-8044-04e61f373e40</field>
+    <field name="model">x_fuel_logs</field>
+    <field name="name">Default form view for x_fuel_logs</field>
+    <field name="type">form</field>
+  </record>
+  <record id="default_search_view__e9d7ad0a-5d11-4f0f-bbdd-6abf2279e9f2" model="ir.ui.view" context="{'studio': True}">
+    <field name="arch" type="xml">
+      <search>
+        <field name="x_name"/>
+        <filter invisible="1" string="My Activities" name="filter_activities_my" domain="[['activity_user_id', '=', uid]]"/>
+        <separator/>
+        <filter invisible="1" string="Late Activities" name="activities_overdue" domain="[('my_activity_date_deadline', '&lt;', 'today')]"/>
+        <filter invisible="1" string="Today Activities" name="activities_today" domain="[('my_activity_date_deadline', '=', 'today')]"/>
+        <filter invisible="1" string="Future Activities" name="activities_upcoming_all" domain="[('my_activity_date_deadline', '&gt;', 'today')]"/>
+        <separator/>
+        <separator/>
+        <filter string="Archived" name="archived_x_fuel_logs" domain="[['x_active', '=', False]]"/>
+        <separator/>
+      </search>
+    </field>
+    <field name="key">studio_customization.default_search_view__e9d7ad0a-5d11-4f0f-bbdd-6abf2279e9f2</field>
+    <field name="model">x_fuel_logs</field>
+    <field name="name">Default search view for x_fuel_logs</field>
+    <field name="type">search</field>
+  </record>
+  <record id="default_pivot_view_f_dd061c8c-e041-402d-a12c-8ff5fdee3cb5" model="ir.ui.view" context="{'studio': True}">
+    <field name="arch" type="xml">
+      <pivot sample="1">
+        <field name="x_studio_value" type="measure"/>
+      </pivot>
+    </field>
+    <field name="key">studio_customization.default_pivot_view_f_dd061c8c-e041-402d-a12c-8ff5fdee3cb5</field>
+    <field name="model">x_fuel_logs</field>
+    <field name="name">Default pivot view for x_fuel_logs</field>
+    <field name="type">pivot</field>
+  </record>
+  <record id="default_graph_view_f_b98569cb-d0e0-420e-a105-1af7a27b049c" model="ir.ui.view" context="{'studio': True}">
+    <field name="arch" type="xml">
+      <graph sample="1">
+        <field name="x_studio_value" type="measure"/>
+        <field name="create_date" type="row"/>
+      </graph>
+    </field>
+    <field name="key">studio_customization.default_graph_view_f_b98569cb-d0e0-420e-a105-1af7a27b049c</field>
+    <field name="model">x_fuel_logs</field>
+    <field name="name">Default graph view for x_fuel_logs</field>
+    <field name="type">graph</field>
+  </record>
+  <record id="odoo_studio_default__69069015-84b0-4fba-a7b1-5dcb91d82fcf" model="ir.ui.view" context="{'studio': True}">
+    <field name="arch" type="xml">
+      <data>
+        <xpath expr="/form//group[@name='studio_group_b4196e_left']" position="replace"/>
+        <xpath expr="/form//group[@name='studio_group_b4196e_right']" position="inside">
+          <field name="x_studio_currency_id"/>
+          <field name="x_studio_cost"/>
+          <field name="x_studio_vehicle"/>
+          <field name="x_studio_liters"/>
+          <field name="x_studio_date"/>
+        </xpath>
+      </data>
+    </field>
+    <field name="inherit_id" ref="default_form_view_fo_cbe2c270-a62a-4243-8044-04e61f373e40"/>
+    <field name="key">studio_customization.odoo_studio_default__69069015-84b0-4fba-a7b1-5dcb91d82fcf</field>
+    <field name="mode">extension</field>
+    <field name="model">x_fuel_logs</field>
+    <field name="name">Odoo Studio: Default form view for x_fuel_logs customization</field>
+    <field name="priority">99</field>
+    <field name="type">form</field>
+  </record>
 </odoo>
