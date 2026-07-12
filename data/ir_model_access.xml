@@ -34,4 +34,21 @@
     <field name="perm_read" eval="True"/>
     <field name="perm_write" eval="True"/>
   </record>
+  <record id="fuel_logs_group_syst_8549bce8-ebab-46d1-9ffc-632eff3b6ebe" model="ir.model.access" context="{'studio': True}">
+    <field name="group_id" ref="base.group_system"/>
+    <field name="model_id" ref="fuel_logs_13548919-9288-402c-97bb-71fd0dd1749d"/>
+    <field name="name">Fuel Logs group_system</field>
+    <field name="perm_create" eval="True"/>
+    <field name="perm_read" eval="True"/>
+    <field name="perm_unlink" eval="True"/>
+    <field name="perm_write" eval="True"/>
+  </record>
+  <record id="fuel_logs_group_user_f729d69e-1f8a-49a8-84a6-e2995002b560" model="ir.model.access" context="{'studio': True}">
+    <field name="group_id" ref="base.group_user"/>
+    <field name="model_id" ref="fuel_logs_13548919-9288-402c-97bb-71fd0dd1749d"/>
+    <field name="name">Fuel Logs group_user</field>
+    <field name="perm_create" eval="True"/>
+    <field name="perm_read" eval="True"/>
+    <field name="perm_write" eval="True"/>
+  </record>
 </odoo>

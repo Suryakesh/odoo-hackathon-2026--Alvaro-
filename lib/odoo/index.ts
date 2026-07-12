@@ -54,6 +54,10 @@ export type {
   MaintenanceStatus,
   // Dashboard
   DashboardKpis,
+  // Fuel Logs
+  OdooRawFuelLog,
+  FuelLog,
+  CreateFuelLogPayload,
 } from "./types"
 
 // Domain services
@@ -101,3 +105,9 @@ export {
   getDashboardKpis,
   getVehicleStatusBreakdown,
 } from "./dashboard"
+
+export {
+  getFuelLogs,
+  createFuelLog,
+  mapFuelLog,
+} from "./fuel-logs"
