@@ -192,4 +192,60 @@
     <field name="name">x_studio_final_odometer_1</field>
     <field name="on_delete" eval="False"/>
   </record>
+  <record id="new_text_contact_5089dd79-1125-48a3-9989-570c0257487d" model="ir.model.fields" context="{'studio': True}">
+    <field name="ttype">char</field>
+    <field name="copied" eval="True"/>
+    <field name="field_description">License Number</field>
+    <field name="model">res.partner</field>
+    <field name="model_id" ref="base.model_res_partner"/>
+    <field name="name">x_studio_license_number</field>
+    <field name="on_delete" eval="False"/>
+  </record>
+  <record id="new_selection_contac_b97ee45d-87fa-44a2-b593-60bcc37791d2" model="ir.model.fields" context="{'studio': True}">
+    <field name="ttype">selection</field>
+    <field name="copied" eval="True"/>
+    <field name="field_description">License Category</field>
+    <field name="model">res.partner</field>
+    <field name="model_id" ref="base.model_res_partner"/>
+    <field name="name">x_studio_license_category</field>
+    <field name="on_delete" eval="False"/>
+    <field name="selection">[('Light', 'Light'), ('Heavy', 'Heavy')]</field>
+  </record>
+  <record id="new_date_contact_e25bbcc0-aa17-46a5-8dec-b1381c0597ad" model="ir.model.fields" context="{'studio': True}">
+    <field name="ttype">date</field>
+    <field name="copied" eval="True"/>
+    <field name="field_description">License Expiry Date</field>
+    <field name="model">res.partner</field>
+    <field name="model_id" ref="base.model_res_partner"/>
+    <field name="name">x_studio_license_expiry_date</field>
+    <field name="on_delete" eval="False"/>
+  </record>
+  <record id="new_text_contact_50dfd7ff-f5c1-4c3b-949e-732779e30020" model="ir.model.fields" context="{'studio': True}">
+    <field name="ttype">char</field>
+    <field name="copied" eval="True"/>
+    <field name="field_description">New Text</field>
+    <field name="model">res.partner</field>
+    <field name="model_id" ref="base.model_res_partner"/>
+    <field name="name">x_studio_char_field_467_1jtaf8nj7</field>
+    <field name="on_delete" eval="False"/>
+  </record>
+  <record id="new_integer_contact_88da47c3-6086-4784-9774-6bd9b67f4c21" model="ir.model.fields" context="{'studio': True}">
+    <field name="ttype">integer</field>
+    <field name="copied" eval="True"/>
+    <field name="field_description">Safety score</field>
+    <field name="model">res.partner</field>
+    <field name="model_id" ref="base.model_res_partner"/>
+    <field name="name">x_studio_safety_score</field>
+    <field name="on_delete" eval="False"/>
+  </record>
+  <record id="new_selection_contac_fa7f3516-13d1-404b-8650-fbb9623857ed" model="ir.model.fields" context="{'studio': True}">
+    <field name="ttype">selection</field>
+    <field name="copied" eval="True"/>
+    <field name="field_description">Driver Status</field>
+    <field name="model">res.partner</field>
+    <field name="model_id" ref="base.model_res_partner"/>
+    <field name="name">x_studio_driver_status</field>
+    <field name="on_delete" eval="False"/>
+    <field name="selection">[('Available', 'Available'), ('On Trip', 'On Trip'), ('Off Duty', 'Off Duty'), ('Suspended', 'Suspended')]</field>
+  </record>
 </odoo>

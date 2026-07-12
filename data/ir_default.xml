@@ -28,4 +28,8 @@
     <field name="field_id" ref="new_integer_trip_54a85948-0317-4ddd-9b45-afee63ff1a9f"/>
     <field name="json_value">"0"</field>
   </record>
+  <record id="new_integer_contact_34e2966c-1073-4c21-be67-de4c5808aa26" model="ir.default" context="{'studio': True}">
+    <field name="field_id" ref="new_integer_contact_88da47c3-6086-4784-9774-6bd9b67f4c21"/>
+    <field name="json_value">"0"</field>
+  </record>
 </odoo>

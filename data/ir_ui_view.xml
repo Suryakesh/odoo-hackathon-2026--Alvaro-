@@ -184,4 +184,24 @@
     <field name="priority">99</field>
     <field name="type">form</field>
   </record>
+  <record id="odoo_studio_res_part_f3b90e89-dbcd-438a-89ed-72b79aa48011" model="ir.ui.view" context="{'studio': True}">
+    <field name="arch" type="xml">
+      <data>
+        <xpath expr="/form/sheet/group/group[2]/field[@name='function']" position="after">
+          <field name="x_studio_license_number"/>
+          <field name="x_studio_license_category"/>
+          <field name="x_studio_license_expiry_date"/>
+          <field name="x_studio_safety_score"/>
+          <field name="x_studio_driver_status"/>
+        </xpath>
+      </data>
+    </field>
+    <field name="inherit_id" ref="base.view_partner_form"/>
+    <field name="key">studio_customization.odoo_studio_res_part_f3b90e89-dbcd-438a-89ed-72b79aa48011</field>
+    <field name="mode">extension</field>
+    <field name="model">res.partner</field>
+    <field name="name">Odoo Studio: res.partner.form customization</field>
+    <field name="priority">990</field>
+    <field name="type">form</field>
+  </record>
 </odoo>
