@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<odoo>
+  <record id="new_integer_vehicle_9f09220c-5d8d-450a-9213-012e867d2f18" model="ir.default" context="{'studio': True}">
+    <field name="field_id" ref="new_integer_vehicle_895e90e2-b133-4364-a965-e19f5b7ef958"/>
+    <field name="json_value">"0"</field>
+  </record>
+</odoo>
