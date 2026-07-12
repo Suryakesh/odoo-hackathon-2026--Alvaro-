@@ -19,7 +19,7 @@ const NAV_ITEMS = [
   { label: "Trips", icon: Route, href: "/trips" },
   { label: "Maintenance", icon: Wrench, href: "#" },
   { label: "Fuel & Expenses", icon: Fuel, href: "/fuel-expenses" },
-  { label: "Analytics", icon: BarChart3, href: "#" },
+  { label: "Analytics", icon: BarChart3, href: "/analytics" },
   { label: "Settings", icon: Settings, href: "#" },
 ] as const
 
