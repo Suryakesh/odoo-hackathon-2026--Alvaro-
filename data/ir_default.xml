@@ -1,0 +1,31 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<odoo>
+  <record id="new_integer_vehicle_9f09220c-5d8d-450a-9213-012e867d2f18" model="ir.default" context="{'studio': True}">
+    <field name="field_id" ref="new_integer_vehicle_895e90e2-b133-4364-a965-e19f5b7ef958"/>
+    <field name="json_value">"0"</field>
+  </record>
+  <record id="active_trip_dcaba989-2a67-42c1-b75f-9696d39fd394" model="ir.default" context="{'studio': True}">
+    <field name="field_id" ref="active_trip_fde5069f-ff24-4797-ac0b-070da77f0fb9"/>
+    <field name="json_value">true</field>
+  </record>
+  <record id="sequence_trip_77fcd423-9eeb-4160-ab4a-8f6a9729868e" model="ir.default" context="{'studio': True}">
+    <field name="field_id" ref="sequence_trip_5cf29342-61f7-437a-bb7f-f0f6ed5dde12"/>
+    <field name="json_value">10</field>
+  </record>
+  <record id="stage_trip_c9b889e3-5a30-4c93-88de-07959180d846" model="ir.default" context="{'studio': True}">
+    <field name="field_id" ref="stage_trip_53e4428d-3a13-4ab1-85c0-dceaa59b0fc8"/>
+    <field name="json_value">1</field>
+  </record>
+  <record id="new_integer_trip_e32245bb-cfae-4d18-b511-ea7adbd314b0" model="ir.default" context="{'studio': True}">
+    <field name="field_id" ref="new_integer_trip_85409154-40b1-4b4c-8e2c-fbdfd1c58d61"/>
+    <field name="json_value">"0"</field>
+  </record>
+  <record id="new_integer_trip_7be4a593-5d7f-44c8-954a-b3861296f66b" model="ir.default" context="{'studio': True}">
+    <field name="field_id" ref="new_integer_trip_b9410a97-c624-4c17-b011-a097e21fd573"/>
+    <field name="json_value">"0"</field>
+  </record>
+  <record id="new_integer_trip_53e49480-f4dd-4234-8bb9-54b6cf784a47" model="ir.default" context="{'studio': True}">
+    <field name="field_id" ref="new_integer_trip_54a85948-0317-4ddd-9b45-afee63ff1a9f"/>
+    <field name="json_value">"0"</field>
+  </record>
+</odoo>

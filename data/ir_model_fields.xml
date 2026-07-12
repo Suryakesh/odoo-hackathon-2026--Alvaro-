@@ -1,0 +1,195 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<odoo>
+  <record id="new_integer_vehicle_895e90e2-b133-4364-a965-e19f5b7ef958" model="ir.model.fields" context="{'studio': True}">
+    <field name="ttype">integer</field>
+    <field name="copied" eval="True"/>
+    <field name="field_description">Max Load Capacity</field>
+    <field name="model">fleet.vehicle</field>
+    <field name="model_id" ref="fleet.model_fleet_vehicle"/>
+    <field name="name">x_studio_max_load_capacity</field>
+    <field name="on_delete" eval="False"/>
+  </record>
+  <record id="new_selection_vehicl_42d04a41-6e96-4d4a-9bd7-49aaa93e4923" model="ir.model.fields" context="{'studio': True}">
+    <field name="ttype">selection</field>
+    <field name="copied" eval="True"/>
+    <field name="field_description">Trip Status</field>
+    <field name="model">fleet.vehicle</field>
+    <field name="model_id" ref="fleet.model_fleet_vehicle"/>
+    <field name="name">x_studio_trip_status</field>
+    <field name="on_delete" eval="False"/>
+    <field name="selection">[('Available', 'Available'), ('On Trip', 'On Trip'), ('In Shop', 'In Shop'), ('Retired', 'Retired')]</field>
+  </record>
+  <record id="description_trip_ebff6a30-54ab-4947-9725-600d4ed08ed1" model="ir.model.fields" context="{'studio': True}">
+    <field name="ttype">char</field>
+    <field name="copied" eval="True"/>
+    <field name="field_description">Description</field>
+    <field name="model">x_trip</field>
+    <field name="model_id" ref="trip_5e692aa4-d9cf-42cd-96d4-9bb21bf1e718"/>
+    <field name="name">x_name</field>
+    <field name="on_delete" eval="False"/>
+    <field name="required" eval="True"/>
+    <field name="tracking">1</field>
+    <field name="translate">standard</field>
+  </record>
+  <record id="active_trip_fde5069f-ff24-4797-ac0b-070da77f0fb9" model="ir.model.fields" context="{'studio': True}">
+    <field name="ttype">boolean</field>
+    <field name="copied" eval="True"/>
+    <field name="field_description">Active</field>
+    <field name="model">x_trip</field>
+    <field name="model_id" ref="trip_5e692aa4-d9cf-42cd-96d4-9bb21bf1e718"/>
+    <field name="name">x_active</field>
+    <field name="on_delete" eval="False"/>
+    <field name="tracking">1</field>
+  </record>
+  <record id="sequence_trip_5cf29342-61f7-437a-bb7f-f0f6ed5dde12" model="ir.model.fields" context="{'studio': True}">
+    <field name="ttype">integer</field>
+    <field name="copied" eval="True"/>
+    <field name="field_description">Sequence</field>
+    <field name="model">x_trip</field>
+    <field name="model_id" ref="trip_5e692aa4-d9cf-42cd-96d4-9bb21bf1e718"/>
+    <field name="name">x_studio_sequence</field>
+    <field name="on_delete" eval="False"/>
+  </record>
+  <record id="stage_trip_53e4428d-3a13-4ab1-85c0-dceaa59b0fc8" model="ir.model.fields" context="{'studio': True}">
+    <field name="ttype">many2one</field>
+    <field name="copied" eval="True"/>
+    <field name="field_description">Stage</field>
+    <field name="group_expand" eval="True"/>
+    <field name="model">x_trip</field>
+    <field name="model_id" ref="trip_5e692aa4-d9cf-42cd-96d4-9bb21bf1e718"/>
+    <field name="name">x_studio_stage_id</field>
+    <field name="on_delete">restrict</field>
+    <field name="relation">x_trip_stage</field>
+    <field name="required" eval="True"/>
+    <field name="tracking">1</field>
+  </record>
+  <record id="high_priority_trip_5a0b9bd2-852c-4438-91c1-202586408a07" model="ir.model.fields" context="{'studio': True}">
+    <field name="ttype">boolean</field>
+    <field name="copied" eval="True"/>
+    <field name="field_description">High Priority</field>
+    <field name="model">x_trip</field>
+    <field name="model_id" ref="trip_5e692aa4-d9cf-42cd-96d4-9bb21bf1e718"/>
+    <field name="name">x_studio_priority</field>
+    <field name="on_delete" eval="False"/>
+  </record>
+  <record id="color_trip_80da92bd-29cd-429e-98eb-c47ad997fdd7" model="ir.model.fields" context="{'studio': True}">
+    <field name="ttype">integer</field>
+    <field name="copied" eval="True"/>
+    <field name="field_description">Color</field>
+    <field name="model">x_trip</field>
+    <field name="model_id" ref="trip_5e692aa4-d9cf-42cd-96d4-9bb21bf1e718"/>
+    <field name="name">x_color</field>
+    <field name="on_delete" eval="False"/>
+  </record>
+  <record id="kanban_state_trip_930bb00e-fed0-43f9-a556-b609428a2b3b" model="ir.model.fields" context="{'studio': True}">
+    <field name="ttype">selection</field>
+    <field name="copied" eval="True"/>
+    <field name="field_description">Kanban State</field>
+    <field name="model">x_trip</field>
+    <field name="model_id" ref="trip_5e692aa4-d9cf-42cd-96d4-9bb21bf1e718"/>
+    <field name="name">x_studio_kanban_state</field>
+    <field name="on_delete" eval="False"/>
+    <field name="selection">[('normal', 'In Progress'), ('done', 'Ready'), ('blocked', 'Blocked')]</field>
+  </record>
+  <record id="stage_name_trip_stag_d54f46e4-836c-4111-ae6c-40234dcdd275" model="ir.model.fields" context="{'studio': True}">
+    <field name="ttype">char</field>
+    <field name="copied" eval="True"/>
+    <field name="field_description">Stage Name</field>
+    <field name="model">x_trip_stage</field>
+    <field name="model_id" ref="trip_stages_14010db3-5bca-4841-bb1f-715bb29be390"/>
+    <field name="name">x_name</field>
+    <field name="on_delete" eval="False"/>
+    <field name="required" eval="True"/>
+    <field name="translate">standard</field>
+  </record>
+  <record id="sequence_trip_stages_048af02a-5aba-43a1-9f6e-205b74bccaa7" model="ir.model.fields" context="{'studio': True}">
+    <field name="ttype">integer</field>
+    <field name="copied" eval="True"/>
+    <field name="field_description">Sequence</field>
+    <field name="model">x_trip_stage</field>
+    <field name="model_id" ref="trip_stages_14010db3-5bca-4841-bb1f-715bb29be390"/>
+    <field name="name">x_studio_sequence</field>
+    <field name="on_delete" eval="False"/>
+  </record>
+  <record id="new_text_trip_08af6988-cde9-4c19-aaa2-b5d309a766d3" model="ir.model.fields" context="{'studio': True}">
+    <field name="ttype">char</field>
+    <field name="copied" eval="True"/>
+    <field name="field_description">Source</field>
+    <field name="model">x_trip</field>
+    <field name="model_id" ref="trip_5e692aa4-d9cf-42cd-96d4-9bb21bf1e718"/>
+    <field name="name">x_studio_source</field>
+    <field name="on_delete" eval="False"/>
+  </record>
+  <record id="new_text_trip_1bd668ac-b7f9-4b9c-8090-5427184e4a12" model="ir.model.fields" context="{'studio': True}">
+    <field name="ttype">char</field>
+    <field name="copied" eval="True"/>
+    <field name="field_description">Destination</field>
+    <field name="model">x_trip</field>
+    <field name="model_id" ref="trip_5e692aa4-d9cf-42cd-96d4-9bb21bf1e718"/>
+    <field name="name">x_studio_destination</field>
+    <field name="on_delete" eval="False"/>
+  </record>
+  <record id="new_many2one_trip_73c3fd04-82fc-4739-a816-06db067a55a4" model="ir.model.fields" context="{'studio': True}">
+    <field name="ttype">many2one</field>
+    <field name="copied" eval="True"/>
+    <field name="field_description">Vehicle</field>
+    <field name="model">x_trip</field>
+    <field name="model_id" ref="trip_5e692aa4-d9cf-42cd-96d4-9bb21bf1e718"/>
+    <field name="name">x_studio_vehicle</field>
+    <field name="relation">fleet.vehicle</field>
+  </record>
+  <record id="new_many2one_trip_584cf954-9381-472d-b407-8fe00a3fbe18" model="ir.model.fields" context="{'studio': True}">
+    <field name="ttype">many2one</field>
+    <field name="copied" eval="True"/>
+    <field name="field_description">Driver</field>
+    <field name="model">x_trip</field>
+    <field name="model_id" ref="trip_5e692aa4-d9cf-42cd-96d4-9bb21bf1e718"/>
+    <field name="name">x_studio_driver</field>
+    <field name="relation">res.partner</field>
+  </record>
+  <record id="new_integer_trip_85409154-40b1-4b4c-8e2c-fbdfd1c58d61" model="ir.model.fields" context="{'studio': True}">
+    <field name="ttype">integer</field>
+    <field name="copied" eval="True"/>
+    <field name="field_description">Cargo Weight</field>
+    <field name="model">x_trip</field>
+    <field name="model_id" ref="trip_5e692aa4-d9cf-42cd-96d4-9bb21bf1e718"/>
+    <field name="name">x_studio_cargo_weight</field>
+    <field name="on_delete" eval="False"/>
+  </record>
+  <record id="new_integer_trip_b9410a97-c624-4c17-b011-a097e21fd573" model="ir.model.fields" context="{'studio': True}">
+    <field name="ttype">integer</field>
+    <field name="copied" eval="True"/>
+    <field name="field_description">Planned Distance</field>
+    <field name="model">x_trip</field>
+    <field name="model_id" ref="trip_5e692aa4-d9cf-42cd-96d4-9bb21bf1e718"/>
+    <field name="name">x_studio_planned_distance</field>
+    <field name="on_delete" eval="False"/>
+  </record>
+  <record id="new_text_trip_1ced8a7d-efdf-45d0-8d6c-28e0709d4fb4" model="ir.model.fields" context="{'studio': True}">
+    <field name="ttype">char</field>
+    <field name="copied" eval="True"/>
+    <field name="field_description">Final Odometer</field>
+    <field name="model">x_trip</field>
+    <field name="model_id" ref="trip_5e692aa4-d9cf-42cd-96d4-9bb21bf1e718"/>
+    <field name="name">x_studio_final_odometer</field>
+    <field name="on_delete" eval="False"/>
+  </record>
+  <record id="new_decimal_trip_64b56b34-3892-4b75-a70b-221a2d02d1ed" model="ir.model.fields" context="{'studio': True}">
+    <field name="ttype">float</field>
+    <field name="copied" eval="True"/>
+    <field name="field_description">Fuel Consumed</field>
+    <field name="model">x_trip</field>
+    <field name="model_id" ref="trip_5e692aa4-d9cf-42cd-96d4-9bb21bf1e718"/>
+    <field name="name">x_studio_fuel_consumed</field>
+    <field name="on_delete" eval="False"/>
+  </record>
+  <record id="new_integer_trip_54a85948-0317-4ddd-9b45-afee63ff1a9f" model="ir.model.fields" context="{'studio': True}">
+    <field name="ttype">integer</field>
+    <field name="copied" eval="True"/>
+    <field name="field_description">Final Odometer</field>
+    <field name="model">x_trip</field>
+    <field name="model_id" ref="trip_5e692aa4-d9cf-42cd-96d4-9bb21bf1e718"/>
+    <field name="name">x_studio_final_odometer_1</field>
+    <field name="on_delete" eval="False"/>
+  </record>
+</odoo>
