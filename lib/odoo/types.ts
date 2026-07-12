@@ -55,7 +55,6 @@ export type OdooRawDriver = {
   id: number
   name: string
   phone: string | false
-  mobile: string | false
   email: string | false
   x_studio_license_number: string | false
   x_studio_license_category: LicenseCategory | false

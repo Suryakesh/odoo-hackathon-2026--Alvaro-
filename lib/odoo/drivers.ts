@@ -28,7 +28,6 @@ const DRIVER_FIELDS = [
   "id",
   "name",
   "phone",
-  "mobile",
   "email",
   "x_studio_license_number",
   "x_studio_license_category",
@@ -53,7 +52,7 @@ export function mapDriver(raw: OdooRawDriver): Driver {
     licenseNumber: raw.x_studio_license_number || "",
     licenseCategory: raw.x_studio_license_category || "Light",
     licenseExpiry: raw.x_studio_license_expiry_date || "",
-    contactNumber: raw.mobile || raw.phone || "",
+    contactNumber: raw.phone || "",
     safetyScore: raw.x_studio_safety_score || 0,
     status: (raw.x_studio_driver_status as DriverStatus) || "Available",
   }
