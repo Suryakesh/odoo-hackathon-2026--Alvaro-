@@ -8,25 +8,16 @@ import { Checkbox } from "@/components/ui/checkbox"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select"
+  authenticateMockUser,
+  serializeSession,
+  SESSION_COOKIE_NAME,
+} from "@/lib/auth"
 import { cn } from "@/lib/utils"
-
-const ROLE_OPTIONS = {
-  "Fleet Manager": "Fleet Manager",
-  Dispatcher: "Dispatcher",
-  "Safety Officer": "Safety Officer",
-  "Financial Analyst": "Financial Analyst",
-}
 
 type FormErrors = {
   email?: string
   password?: string
-  role?: string
+  form?: string
 }
 
 export function LoginForm() {
@@ -34,7 +25,6 @@ export function LoginForm() {
 
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
-  const [role, setRole] = useState("")
   const [rememberMe, setRememberMe] = useState(false)
   const [errors, setErrors] = useState<FormErrors>({})
 
@@ -44,13 +34,21 @@ export function LoginForm() {
     const nextErrors: FormErrors = {}
     if (!email.trim()) nextErrors.email = "Email is required"
     if (!password.trim()) nextErrors.password = "Password is required"
-    if (!role) nextErrors.role = "Select a role to continue"
 
     setErrors(nextErrors)
     if (Object.keys(nextErrors).length > 0) return
 
-    localStorage.setItem("transitops_role", role)
-    localStorage.setItem("transitops_remember_me", String(rememberMe))
+    const session = authenticateMockUser(email, password)
+    if (!session) {
+      setErrors({ form: "Invalid email or password." })
+      return
+    }
+
+    const maxAge = rememberMe ? "; max-age=2592000" : ""
+    document.cookie = `${SESSION_COOKIE_NAME}=${serializeSession(
+      session
+    )}; path=/; samesite=lax${maxAge}`
+
     router.push("/dashboard")
   }
 
@@ -65,7 +63,11 @@ export function LoginForm() {
           value={email}
           onChange={(e) => {
             setEmail(e.target.value)
-            setErrors((prev) => ({ ...prev, email: undefined }))
+            setErrors((prev) => ({
+              ...prev,
+              email: undefined,
+              form: undefined,
+            }))
           }}
           aria-invalid={!!errors.email}
           className={cn(
@@ -87,7 +89,11 @@ export function LoginForm() {
           value={password}
           onChange={(e) => {
             setPassword(e.target.value)
-            setErrors((prev) => ({ ...prev, password: undefined }))
+            setErrors((prev) => ({
+              ...prev,
+              password: undefined,
+              form: undefined,
+            }))
           }}
           aria-invalid={!!errors.password}
           className={cn(
@@ -97,38 +103,6 @@ export function LoginForm() {
         />
         {errors.password && (
           <span className="text-xs text-red-400">{errors.password}</span>
-        )}
-      </div>
-
-      <div className="flex flex-col gap-1.5">
-        <Label htmlFor="role">Role</Label>
-        <Select
-          items={ROLE_OPTIONS}
-          value={role || null}
-          onValueChange={(value) => {
-            setRole((value as string) ?? "")
-            setErrors((prev) => ({ ...prev, role: undefined }))
-          }}
-        >
-          <SelectTrigger
-            id="role"
-            className={cn(
-              "w-full border-white/10 bg-white/5 text-neutral-200",
-              errors.role && "border-red-500/50"
-            )}
-          >
-            <SelectValue placeholder="Select your role" />
-          </SelectTrigger>
-          <SelectContent>
-            {Object.keys(ROLE_OPTIONS).map((r) => (
-              <SelectItem key={r} value={r}>
-                {r}
-              </SelectItem>
-            ))}
-          </SelectContent>
-        </Select>
-        {errors.role && (
-          <span className="text-xs text-red-400">{errors.role}</span>
         )}
       </div>
 
@@ -147,6 +121,12 @@ export function LoginForm() {
           Forgot password?
         </a>
       </div>
+
+      {errors.form && (
+        <p className="rounded-lg border border-red-500/20 bg-red-500/10 px-3 py-2 text-sm text-red-300">
+          {errors.form}
+        </p>
+      )}
 
       <Button type="submit" className="w-full">
         Sign In

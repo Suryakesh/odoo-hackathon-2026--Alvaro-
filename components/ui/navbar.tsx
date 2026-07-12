@@ -73,9 +73,9 @@ export function Navbar() {
           <Button
             className="rounded-full bg-white px-6 text-black hover:bg-white/90"
             nativeButton={false}
-            render={<Link href="/dashboard" />}
+            render={<Link href="/login" />}
           >
-            Try Demo
+            Sign In
           </Button>
         </div>
 
@@ -123,9 +123,9 @@ export function Navbar() {
             <Button
               className="mt-2 w-full rounded-full bg-white text-black hover:bg-white/90"
               nativeButton={false}
-              render={<Link href="/dashboard" onClick={() => setMobileOpen(false)} />}
+              render={<Link href="/login" onClick={() => setMobileOpen(false)} />}
             >
-              Try Demo
+              Sign In
             </Button>
           </div>
         </div>
