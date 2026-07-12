@@ -1,10 +1,17 @@
 import { Card, CardContent } from "@/components/ui/card"
 import { formatCurrency } from "@/app/fleet/_components/vehicle-data"
 
-import { computeTotalOperationalCost } from "./fuel-expense-data"
+import { FUEL_LOGS } from "./fuel-expense-data"
 
-export function SummaryBar() {
-  const total = computeTotalOperationalCost()
+const MOCK_FUEL_TOTAL = FUEL_LOGS.reduce((sum, log) => sum + log.cost, 0)
+
+interface SummaryBarProps {
+  /** Real expense total (toll + other) from Odoo. Falls back to 0 while loading. */
+  expensesTotal?: number
+}
+
+export function SummaryBar({ expensesTotal = 0 }: SummaryBarProps) {
+  const total = MOCK_FUEL_TOTAL + expensesTotal
 
   return (
     <Card className="border border-white/10 bg-white/[0.03] ring-0">

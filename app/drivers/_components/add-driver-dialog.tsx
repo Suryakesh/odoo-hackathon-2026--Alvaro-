@@ -1,6 +1,7 @@
 "use client"
 
-import { Plus } from "lucide-react"
+import { useRef, useState } from "react"
+import { Loader2, Plus } from "lucide-react"
 
 import { Button } from "@/components/ui/button"
 import {
@@ -36,9 +37,58 @@ const STATUS_OPTIONS = {
   Suspended: "Suspended",
 }
 
-export function AddDriverDialog() {
+interface AddDriverDialogProps {
+  onCreated?: () => void
+}
+
+export function AddDriverDialog({ onCreated }: AddDriverDialogProps) {
+  const [open, setOpen] = useState(false)
+  const [submitting, setSubmitting] = useState(false)
+  const [error, setError] = useState<string | null>(null)
+
+  const [licenseCategory, setLicenseCategory] = useState("LMV")
+  const [status, setStatus] = useState("Available")
+
+  const nameRef = useRef<HTMLInputElement>(null)
+  const licenseNumberRef = useRef<HTMLInputElement>(null)
+  const licenseExpiryRef = useRef<HTMLInputElement>(null)
+  const contactRef = useRef<HTMLInputElement>(null)
+
+  async function handleSubmit(e: React.FormEvent) {
+    e.preventDefault()
+    setSubmitting(true)
+    setError(null)
+
+    try {
+      const res = await fetch("/api/drivers", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          name: nameRef.current?.value ?? "",
+          licenseNumber: licenseNumberRef.current?.value ?? "",
+          licenseCategory,
+          licenseExpiry: licenseExpiryRef.current?.value ?? "",
+          contactNumber: contactRef.current?.value ?? "",
+          status,
+        }),
+      })
+
+      if (!res.ok) {
+        const data = await res.json().catch(() => ({}))
+        throw new Error(data.error ?? `Request failed (${res.status})`)
+      }
+
+      setOpen(false)
+      onCreated?.()
+    } catch (err) {
+      setError(err instanceof Error ? err.message : "Unknown error")
+    } finally {
+      setSubmitting(false)
+    }
+  }
+
   return (
-    <Dialog>
+    <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger
         render={
           <Button className="gap-1.5">
@@ -48,25 +98,31 @@ export function AddDriverDialog() {
         }
       />
       <DialogContent className="sm:max-w-md">
-        <form>
+        <form onSubmit={handleSubmit}>
           <DialogHeader>
             <DialogTitle>Add Driver</DialogTitle>
             <DialogDescription>
-              Register a new driver. Expired license or Suspended status
-              blocks trip assignment.
+              Register a new driver. Expired license or Suspended status blocks
+              trip assignment.
             </DialogDescription>
           </DialogHeader>
 
           <div className="grid grid-cols-2 gap-4 py-2">
             <div className="col-span-2 flex flex-col gap-1.5">
               <Label htmlFor="driver-name">Driver Name</Label>
-              <Input id="driver-name" placeholder="Rohan Mehta" required />
+              <Input
+                id="driver-name"
+                ref={nameRef}
+                placeholder="Rohan Mehta"
+                required
+              />
             </div>
 
             <div className="col-span-2 flex flex-col gap-1.5">
               <Label htmlFor="license-number">License Number</Label>
               <Input
                 id="license-number"
+                ref={licenseNumberRef}
                 placeholder="GJ0120230012345"
                 required
               />
@@ -74,7 +130,11 @@ export function AddDriverDialog() {
 
             <div className="flex flex-col gap-1.5">
               <Label htmlFor="license-category">License Category</Label>
-              <Select items={LICENSE_CATEGORY_OPTIONS} defaultValue="LMV">
+              <Select
+                items={LICENSE_CATEGORY_OPTIONS}
+                value={licenseCategory}
+                onValueChange={(v) => { if (v !== null) setLicenseCategory(v) }}
+              >
                 <SelectTrigger id="license-category" className="w-full">
                   <SelectValue />
                 </SelectTrigger>
@@ -88,13 +148,19 @@ export function AddDriverDialog() {
 
             <div className="flex flex-col gap-1.5">
               <Label htmlFor="license-expiry">License Expiry Date</Label>
-              <Input id="license-expiry" type="date" required />
+              <Input
+                id="license-expiry"
+                ref={licenseExpiryRef}
+                type="date"
+                required
+              />
             </div>
 
             <div className="col-span-2 flex flex-col gap-1.5">
               <Label htmlFor="contact-number">Contact Number</Label>
               <Input
                 id="contact-number"
+                ref={contactRef}
                 type="tel"
                 placeholder="+91 98250 12345"
                 required
@@ -103,7 +169,11 @@ export function AddDriverDialog() {
 
             <div className="col-span-2 flex flex-col gap-1.5">
               <Label htmlFor="driver-status">Status</Label>
-              <Select items={STATUS_OPTIONS} defaultValue="Available">
+              <Select
+                items={STATUS_OPTIONS}
+                value={status}
+                onValueChange={(v) => { if (v !== null) setStatus(v) }}
+              >
                 <SelectTrigger id="driver-status" className="w-full">
                   <SelectValue />
                 </SelectTrigger>
@@ -117,11 +187,16 @@ export function AddDriverDialog() {
             </div>
           </div>
 
+          {error && <p className="mt-1 text-sm text-red-400">{error}</p>}
+
           <DialogFooter>
             <DialogClose render={<Button variant="outline" type="button" />}>
               Cancel
             </DialogClose>
-            <DialogClose render={<Button type="submit" />}>Save</DialogClose>
+            <Button type="submit" disabled={submitting} className="gap-1.5">
+              {submitting && <Loader2 className="size-3.5 animate-spin" />}
+              Save
+            </Button>
           </DialogFooter>
         </form>
       </DialogContent>
