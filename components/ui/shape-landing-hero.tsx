@@ -5,9 +5,7 @@ import { motion } from "framer-motion";
 import { Circle } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
-
-const GITHUB_REPO_URL =
-    "https://github.com/Suryakesh/odoo-hackathon-2026--Alvaro-";
+import { GITHUB_REPO_URL } from "@/lib/constants";
 
 function ElegantShape({
     className,

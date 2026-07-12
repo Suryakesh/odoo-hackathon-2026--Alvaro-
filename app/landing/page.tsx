@@ -10,7 +10,7 @@ export const metadata: Metadata = {
   title: "TransitOps · Fleet Management",
 }
 
-export default function Home() {
+export default function LandingPage() {
   return (
     <>
       <Navbar />
