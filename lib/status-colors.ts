@@ -21,3 +21,10 @@ export const VEHICLE_STATUS_COLOR: Record<string, StatusColor> = {
   "In Shop": "amber",
   Retired: "red",
 }
+
+export const DRIVER_STATUS_COLOR: Record<string, StatusColor> = {
+  Available: "green",
+  "On Trip": "blue",
+  "Off Duty": "grey",
+  Suspended: "red",
+}
