@@ -11,6 +11,7 @@ Team: Surya Kesharwani (Lead), Jay1719-git, Chaitanya Pal, shiiikha08
 ## Getting Started
 
 ```bash
+
 npm run dev
 ```
 
