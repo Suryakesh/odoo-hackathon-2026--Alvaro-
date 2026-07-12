@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<odoo>
+
+    <!-- Maintenance List View -->
+    <!-- This decides which columns appear in the table -->
+
+    <record id="view_transit_maintenance_tree" model="ir.ui.view">
+
+        <field name="name">
+            transit.maintenance.tree
+        </field>
+
+        <!-- Connecting this view with our Python model -->
+        <field name="model">
+            transit.maintenance
+        </field>
+
+
+        <field name="arch" type="xml">
+
+            <tree>
+
+                <!-- Columns shown in list view -->
+
+                <field name="name"/>
+
+                <field name="vehicle_name"/>
+
+                <field name="maintenance_type"/>
+
+                <field name="maintenance_date"/>
+
+                <field name="cost"/>
+
+                <field name="status"/>
+
+            </tree>
+
+        </field>
+
+    </record>
+
+
+        <!-- Maintenance Form View -->
+    <!-- This creates the form page for creating/editing maintenance records -->
+
+    <record id="view_transit_maintenance_form" model="ir.ui.view">
+
+        <field name="name">
+            transit.maintenance.form
+        </field>
+
+        <!-- Connecting form with our Python model -->
+        <field name="model">
+            transit.maintenance
+        </field>
+
+        <field name="arch" type="xml">
+
+            <form>
+
+                <sheet>
+
+                    <group>
+
+                        <field name="name"/>
+
+                        <field name="vehicle_name"/>
+
+                        <field name="maintenance_type"/>
+
+                        <field name="maintenance_date"/>
+
+                        <field name="cost"/>
+
+                        <field name="description"/>
+
+                        <field name="status"/>
+
+                    </group>
+
+                </sheet>
+
+            </form>
+
+        </field>
+
+    </record>
+
+        <!-- Maintenance Window Action -->
+    <!-- This opens the maintenance records -->
+
+    <record id="action_transit_maintenance" model="ir.actions.act_window">
+
+        <field name="name">
+            Maintenance
+        </field>
+
+        <field name="res_model">
+            transit.maintenance
+        </field>
+
+        <field name="view_mode">
+            tree,form
+        </field>
+
+    </record>
+
+        <!-- Main TransitOps Menu -->
+
+    <menuitem
+        id="menu_transit_ops_root"
+        name="TransitOps"
+    />
+
+
+    <!-- Maintenance Sub Menu -->
+
+    <menuitem
+        id="menu_transit_maintenance"
+        name="Maintenance"
+        parent="menu_transit_ops_root"
+        action="action_transit_maintenance"
+    />
+
+
+</odoo>
