@@ -106,9 +106,9 @@ function HeroGeometric({
                             size="lg"
                             className="rounded-full px-8 bg-white text-black hover:bg-white/90"
                             nativeButton={false}
-                            render={<Link href="/dashboard" />}
+                            render={<Link href="/login" />}
                         >
-                            Try Demo
+                            Sign In
                         </Button>
                         <Button
                             size="lg"

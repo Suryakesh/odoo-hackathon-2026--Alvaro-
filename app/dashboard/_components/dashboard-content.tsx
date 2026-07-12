@@ -12,7 +12,8 @@ import {
   type VehicleStatusItem,
 } from "./vehicle-status-chart"
 
-const DRIVERS_ON_DUTY = 96
+// Driver data pending backend.
+const DRIVERS_ON_DUTY = 0
 
 function parseOdooDate(value: string): number {
   if (!value) return 0
@@ -86,7 +87,6 @@ export function DashboardContent() {
         label: "Pending Trips",
         value: String(trips.filter((trip) => trip.status === "Draft").length),
       },
-      // Driver data is not ready yet, so this remains a static dashboard value.
       { label: "Drivers On Duty", value: String(DRIVERS_ON_DUTY) },
       { label: "Fleet Utilization", value: `${fleetUtilization}%` },
     ]
