@@ -17,7 +17,7 @@ const NAV_ITEMS = [
   { label: "Fleet", icon: Truck, href: "/fleet" },
   { label: "Drivers", icon: Users, href: "/drivers" },
   { label: "Trips", icon: Route, href: "/trips" },
-  { label: "Maintenance", icon: Wrench, href: "#" },
+  { label: "Maintenance", icon: Wrench, href: "/maintenance" },
   { label: "Fuel & Expenses", icon: Fuel, href: "/fuel-expenses" },
   { label: "Analytics", icon: BarChart3, href: "/analytics" },
   { label: "Settings", icon: Settings, href: "/settings" },
