@@ -1,11 +1,15 @@
 import { AddExpenseDialog } from "./add-expense-dialog"
 import { LogFuelDialog } from "./log-fuel-dialog"
 
-export function ActionBar() {
+interface ActionBarProps {
+  onExpenseCreated?: () => void
+}
+
+export function ActionBar({ onExpenseCreated }: ActionBarProps) {
   return (
     <div className="flex flex-wrap items-center justify-end gap-3">
       <LogFuelDialog />
-      <AddExpenseDialog />
+      <AddExpenseDialog onCreated={onExpenseCreated} />
     </div>
   )
 }
