@@ -14,3 +14,10 @@ export const TRIP_STATUS_COLOR: Record<string, StatusColor> = {
   Draft: "grey",
   Cancelled: "red",
 }
+
+export const VEHICLE_STATUS_COLOR: Record<string, StatusColor> = {
+  Available: "green",
+  "On Trip": "blue",
+  "In Shop": "amber",
+  Retired: "red",
+}

@@ -1,7 +1,7 @@
 import type { Metadata } from "next"
 
-import { Sidebar } from "./_components/sidebar"
-import { TopBar } from "./_components/topbar"
+import { Sidebar } from "@/components/layout/sidebar"
+import { TopBar } from "@/components/layout/topbar"
 import { FiltersRow } from "./_components/filters-row"
 import { KpiCards } from "./_components/kpi-cards"
 import { RecentTripsTable } from "./_components/recent-trips-table"
@@ -14,7 +14,7 @@ export const metadata: Metadata = {
 export default function DashboardPage() {
   return (
     <div className="dark min-h-screen bg-[#030303] text-neutral-200">
-      <Sidebar />
+      <Sidebar active="Dashboard" />
 
       <div className="lg:pl-60">
         <TopBar />

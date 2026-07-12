@@ -1,13 +1,16 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 
-import { STATUS_COLORS, type StatusColor } from "./status-colors"
+import { STATUS_COLORS, VEHICLE_STATUS_COLOR } from "@/lib/status-colors"
 
 const VEHICLE_STATUS = [
-  { label: "Available", count: 58, color: "green" as StatusColor },
-  { label: "On Trip", count: 61, color: "blue" as StatusColor },
-  { label: "In Shop", count: 12, color: "amber" as StatusColor },
-  { label: "Retired", count: 11, color: "grey" as StatusColor },
-]
+  { label: "Available", count: 58 },
+  { label: "On Trip", count: 61 },
+  { label: "In Shop", count: 12 },
+  { label: "Retired", count: 11 },
+].map((status) => ({
+  ...status,
+  color: VEHICLE_STATUS_COLOR[status.label],
+}))
 
 const TOTAL = VEHICLE_STATUS.reduce((sum, s) => sum + s.count, 0)
 

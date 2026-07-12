@@ -9,7 +9,7 @@ import {
   TableRow,
 } from "@/components/ui/table"
 
-import { STATUS_COLORS, TRIP_STATUS_COLOR } from "./status-colors"
+import { STATUS_COLORS, TRIP_STATUS_COLOR } from "@/lib/status-colors"
 
 const TRIPS = [
   {
